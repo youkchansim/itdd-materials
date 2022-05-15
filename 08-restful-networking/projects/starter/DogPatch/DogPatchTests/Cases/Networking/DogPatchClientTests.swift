@@ -74,4 +74,28 @@ class DogPatchClientTests: XCTestCase {
     // then
     XCTAssertTrue(mockTask.calledResume)
   }
+  
+  func test_getDogs_givenResponseStatusCode500_callsCompletion() {
+    // given
+    let getDogsURL = URL(string: "dogs", relativeTo: baseURL)!
+    let response = HTTPURLResponse(url: getDogsURL,
+                                   statusCode: 500,
+                                   httpVersion: nil,
+                                   headerFields: nil)
+    // when
+    var calledCompletion = false
+    var receivedDogs: [Dog]? = nil
+    var receivedError: Error? = nil
+    let mockTask = sut.getDogs() { dogs, error in
+      calledCompletion = true
+      receivedDogs = dogs
+      receivedError = error
+    } as! MockURLSessionTask
+    
+    mockTask.completionHandler(nil, response, nil)
+    // then
+    XCTAssertTrue(calledCompletion)
+    XCTAssertNil(receivedDogs)
+    XCTAssertNil(receivedError)
+  }
 }
