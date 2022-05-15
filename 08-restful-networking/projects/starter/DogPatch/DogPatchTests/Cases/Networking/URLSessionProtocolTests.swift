@@ -56,7 +56,7 @@ class URLSessionProtocolTests: XCTestCase {
     XCTAssertTrue((session as AnyObject) is URLSessionProtocol)
   }
   
-  func test_URLSession_makeDataTask_createsTaskWithPassedInURL() {    
+  func test_URLSession_makeDataTask_createsTaskWithPassedInURL() {
     // when
     let task = session.makeDataTask(
       with: url,
@@ -64,5 +64,19 @@ class URLSessionProtocolTests: XCTestCase {
     as! URLSessionTask
     // then
     XCTAssertEqual(task.originalRequest?.url, url)
+  }
+  
+  func test_URLSession_makeDataTask_createsTaskWithPassedInCompletion() {
+    // given
+    let expectation =
+      expectation(description: "Completion should be called")
+    // when
+    let task = session.makeDataTask(
+      with: url,
+      completionHandler: { _, _, _ in expectation.fulfill() })
+    as! URLSessionTask
+    task.cancel()
+    // then
+    waitForExpectations(timeout: 0.2, handler: nil)
   }
 }
