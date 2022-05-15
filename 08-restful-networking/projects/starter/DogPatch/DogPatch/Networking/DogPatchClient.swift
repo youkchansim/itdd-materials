@@ -36,4 +36,12 @@ class DogPatchClient {
     self.baseURL = baseURL
     self.session = session
   }
+  
+  func getDogs(completion: @escaping
+    ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol {
+    let url = URL(string: "dogs", relativeTo: baseURL)!
+    let task = session.makeDataTask(with: url) { _, _, _ in }
+    task.resume()
+    return task
+  }
 }

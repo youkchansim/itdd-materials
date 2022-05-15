@@ -44,6 +44,7 @@ class MockURLSession: URLSessionProtocol {
 class MockURLSessionTask: URLSessionTaskProtocol {
   var completionHandler: (Data?, URLResponse?, Error?) -> Void
   var url: URL
+  var calledResume = false
   
   init(completionHandler:
     @escaping (Data?, URLResponse?, Error?) -> Void,
@@ -53,6 +54,7 @@ class MockURLSessionTask: URLSessionTaskProtocol {
   }
   
   // 3
-  func resume() {
+  func resume() {    
+    calledResume = true
   }
 }
