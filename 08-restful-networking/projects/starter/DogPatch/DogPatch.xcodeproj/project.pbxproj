@@ -44,6 +44,7 @@
 		42D837B022B6C0830036C5DD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D837AF22B6C0830036C5DD /* Colors.xcassets */; };
 		42D837B322B6CE2D0036C5DD /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837B222B6CE2D0036C5DD /* Dog.swift */; };
 		42D837BE22B6DAD50036C5DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837BD22B6DAD50036C5DD /* User.swift */; };
+		831D3DFB283165A200C8D382 /* DogPatchClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D3DFA283165A200C8D382 /* DogPatchClientTests.swift */; };
 		9581B4AC2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */; };
 		9581B4AD2316F32D00A78286 /* StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */; };
 		9581B4B12316F35D00A78286 /* UIView+NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */; };
@@ -106,6 +107,7 @@
 		42D837AF22B6C0830036C5DD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		42D837B222B6CE2D0036C5DD /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		42D837BD22B6DAD50036C5DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		831D3DFA283165A200C8D382 /* DogPatchClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogPatchClientTests.swift; sourceTree = "<group>"; };
 		9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryboardCreatable.swift"; sourceTree = "<group>"; };
 		9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardCreatable.swift; sourceTree = "<group>"; };
 		9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibCreatable.swift"; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 		42463A6D270AC2700057BA5E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				831D3DFA283165A200C8D382 /* DogPatchClientTests.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				424E578822E0D87200C96D45 /* TimeInterval+Calendar.swift in Sources */,
 				427CCB0622BC72C900F92FF7 /* UIView+NibCreatableTests.swift in Sources */,
 				427CCAFD22BC705600F92FF7 /* TestViewController.swift in Sources */,
+				831D3DFB283165A200C8D382 /* DogPatchClientTests.swift in Sources */,
 				420A276522E485C000ECCA13 /* Data+JSONFile.swift in Sources */,
 				4261B59C22D74D1700E5824D /* TestTableViewCell.swift in Sources */,
 				424E576D22E0C23700C96D45 /* UserTests.swift in Sources */,
