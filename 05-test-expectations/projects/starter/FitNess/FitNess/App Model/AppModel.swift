@@ -36,7 +36,13 @@ class AppModel {
   static let instance = AppModel()
   let dataModel = DataModel()
 
-  var appState: AppState = .notStarted
+  var appState: AppState = .notStarted {
+    didSet {
+      stateChangedCallback?(self)
+    }
+  }
+  
+  var stateChangedCallback: ((AppModel) -> Void)?
 
   func start() throws {
     guard dataModel.goal != nil else {

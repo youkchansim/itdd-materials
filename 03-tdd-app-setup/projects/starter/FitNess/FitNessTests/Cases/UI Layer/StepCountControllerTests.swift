@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -33,69 +33,40 @@
 import XCTest
 @testable import FitNess
 
-class AppModelTests: XCTestCase {
-  //swiftlint:disable implicitly_unwrapped_optional
-  var sut: AppModel!
+class StepCountControllerTests: XCTestCase {
 
-  override func setUpWithError() throws {
-    try super.setUpWithError()
-    sut = AppModel()
-  }
+  var sut: StepCountController!
+  
+    override func setUpWithError() throws {
+      try super.setUpWithError()
+      sut = StepCountController()
+    }
 
-  override func tearDownWithError() throws {
-    sut = nil
-    try super.tearDownWithError()
-  }
-
-  // MARK: - Given
-  func givenGoalSet() {
-    sut.dataModel.goal = 1000
+    override func tearDownWithError() throws {
+      sut = nil
+      try super.tearDownWithError()
+    }
+  
+  func testController_whenStartTapped_appIsInProgress() {
+    whenStartTapped()
+    let state = AppModel.instance.appState
+    XCTAssertEqual(state, AppState.inProgress)
   }
   
-  func givenInProgress() {
-    givenGoalSet()
-    try! sut.start()
-  }
-
-  // MARK: - Lifecycle
-  func testAppModel_whenInitialized_isInNotStartedState() {
-    let initialState = sut.appState
-    XCTAssertEqual(initialState, AppState.notStarted)
-  }
-
-  // MARK: - Start
-  func testAppModelWIthNoGoal_whenStarted_throwsError() {
-    XCTAssertThrowsError(try sut.start())
+  func testController_whenStartTapped_buttonLabelIsPause() {
+    whenStartTapped()
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
   }
   
-  func testStart_withGoalSet_doesNotThrow() {
-    // given
-    givenGoalSet()
-    
-    // then
-    XCTAssertNoThrow(try sut.start())
+  func testController_whenCreated_buttonLabelIsStart() {
+    sut.viewDidLoad()
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
   }
   
-  func testAppModel_whenStarted_isInInProgressState() {
-    // given
-    givenGoalSet()
-    
-    // when started
-    try? sut.start()
+  func whenStartTapped() {
+    sut.startStopPause(nil)
+  }
 
-    // then it is in inProgress
-    let observedState = sut.appState
-    XCTAssertEqual(observedState, .inProgress)
-  }
-  
-  func testAppModel_whenReset_isInNotStartedState() {
-    // given
-    givenInProgress()
-    
-    // when
-    sut.restart()
-    
-    // then
-    XCTAssertEqual(sut.appState, .notStarted)
-  }
 }

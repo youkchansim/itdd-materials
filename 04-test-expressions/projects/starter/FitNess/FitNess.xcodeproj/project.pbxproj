@@ -22,6 +22,9 @@
 		4CCF44142706844A00DD29AB /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF44132706844A00DD29AB /* DataModel.swift */; };
 		4CCF44162706846400DD29AB /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF44152706846400DD29AB /* Nessie.swift */; };
 		4CCF44182706849B00DD29AB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF44172706849B00DD29AB /* AppError.swift */; };
+		837DEAFB27DECD8A0008A0E4 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DEAFA27DECD8A0008A0E4 /* DataModelTests.swift */; };
+		837DEAFE27DED2EA0008A0E4 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DEAFD27DED2EA0008A0E4 /* ViewControllers.swift */; };
+		837DEB0127DED3210008A0E4 /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DEB0027DED3210008A0E4 /* RootViewController+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		4CCF44132706844A00DD29AB /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4CCF44152706846400DD29AB /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
 		4CCF44172706849B00DD29AB /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		837DEAFA27DECD8A0008A0E4 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
+		837DEAFD27DED2EA0008A0E4 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
+		837DEB0027DED3210008A0E4 /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,8 @@
 		4CCF44032705277700DD29AB /* FitNessTests */ = {
 			isa = PBXGroup;
 			children = (
+				837DEAFF27DED30E0008A0E4 /* Test Extensions */,
+				837DEAFC27DED2D50008A0E4 /* Test Classes */,
 				4CCF440F27052F9C00DD29AB /* Cases */,
 			);
 			path = FitNessTests;
@@ -156,8 +164,8 @@
 		4CCF440F27052F9C00DD29AB /* Cases */ = {
 			isa = PBXGroup;
 			children = (
+				837DEAF927DECD790008A0E4 /* Data Model */,
 				4CCF441027052FA500DD29AB /* App Model */,
-				4CCF441A2706879400DD29AB /* Data Model */,
 				4CCF441127052FAC00DD29AB /* UI Layer */,
 			);
 			path = Cases;
@@ -188,11 +196,28 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
-		4CCF441A2706879400DD29AB /* Data Model */ = {
+		837DEAF927DECD790008A0E4 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				837DEAFA27DECD8A0008A0E4 /* DataModelTests.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		837DEAFC27DED2D50008A0E4 /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				837DEAFD27DED2EA0008A0E4 /* ViewControllers.swift */,
+			);
+			path = "Test Classes";
+			sourceTree = "<group>";
+		};
+		837DEAFF27DED30E0008A0E4 /* Test Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				837DEB0027DED3210008A0E4 /* RootViewController+Tests.swift */,
+			);
+			path = "Test Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,7 +361,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837DEB0127DED3210008A0E4 /* RootViewController+Tests.swift in Sources */,
+				837DEAFB27DECD8A0008A0E4 /* DataModelTests.swift in Sources */,
 				4CCF440E27052F8000DD29AB /* StepCountControllerTests.swift in Sources */,
+				837DEAFE27DED2EA0008A0E4 /* ViewControllers.swift in Sources */,
 				4CCF440C2705284300DD29AB /* AppModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +512,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8J97RH324Q;
 				INFOPLIST_FILE = FitNess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -501,6 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8J97RH324Q;
 				INFOPLIST_FILE = FitNess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,6 +551,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8J97RH324Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -547,6 +578,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8J97RH324Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

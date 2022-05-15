@@ -32,6 +32,7 @@
 		4CCF441C270687DC00DD29AB /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF441B270687DC00DD29AB /* DataModelTests.swift */; };
 		4CF6A59B270A567F006F0292 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6A59A270A567F006F0292 /* ViewControllers.swift */; };
 		4CF6A59E270D02F1006F0292 /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6A59D270D02F1006F0292 /* RootViewController+Tests.swift */; };
+		8370CFCE280CF3E4005D11C0 /* ButtonObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8370CFCD280CF3E4005D11C0 /* ButtonObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		4CCF441B270687DC00DD29AB /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
 		4CF6A59A270A567F006F0292 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		4CF6A59D270D02F1006F0292 /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
+		8370CFCD280CF3E4005D11C0 /* ButtonObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				4CF6A59A270A567F006F0292 /* ViewControllers.swift */,
+				8370CFCD280CF3E4005D11C0 /* ButtonObserver.swift */,
 			);
 			path = "Test Classes";
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				4C566FB6270D1B9E00499DB9 /* AppModel+Tests.swift in Sources */,
 				4CBEFC98270D24EF00EB190B /* AlertCenterTests.swift in Sources */,
 				4CF6A59B270A567F006F0292 /* ViewControllers.swift in Sources */,
+				8370CFCE280CF3E4005D11C0 /* ButtonObserver.swift in Sources */,
 				4CCF440C2705284300DD29AB /* AppModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

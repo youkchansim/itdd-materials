@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +33,13 @@
 import XCTest
 @testable import FitNess
 
-class AppModelTests: XCTestCase {
-  //swiftlint:disable implicitly_unwrapped_optional
-  var sut: AppModel!
+class DataModelTests: XCTestCase {
 
+  var sut: DataModel!
+  
   override func setUpWithError() throws {
     try super.setUpWithError()
-    sut = AppModel()
+    sut = DataModel()
   }
 
   override func tearDownWithError() throws {
@@ -47,55 +47,33 @@ class AppModelTests: XCTestCase {
     try super.tearDownWithError()
   }
 
-  // MARK: - Given
-  func givenGoalSet() {
-    sut.dataModel.goal = 1000
+  // MARK: - Goal
+  func testModel_whenStarted_goalIsNotReached() {
+    XCTAssertFalse(sut.goalReached, "goalReached should be false when the model is created")
   }
   
-  func givenInProgress() {
-    givenGoalSet()
-    try! sut.start()
-  }
-
-  // MARK: - Lifecycle
-  func testAppModel_whenInitialized_isInNotStartedState() {
-    let initialState = sut.appState
-    XCTAssertEqual(initialState, AppState.notStarted)
-  }
-
-  // MARK: - Start
-  func testAppModelWIthNoGoal_whenStarted_throwsError() {
-    XCTAssertThrowsError(try sut.start())
-  }
-  
-  func testStart_withGoalSet_doesNotThrow() {
+  func testModel_whenStepsReachGoal_goalIsReached() {
     // given
-    givenGoalSet()
-    
-    // then
-    XCTAssertNoThrow(try sut.start())
-  }
-  
-  func testAppModel_whenStarted_isInInProgressState() {
-    // given
-    givenGoalSet()
-    
-    // when started
-    try? sut.start()
-
-    // then it is in inProgress
-    let observedState = sut.appState
-    XCTAssertEqual(observedState, .inProgress)
-  }
-  
-  func testAppModel_whenReset_isInNotStartedState() {
-    // given
-    givenInProgress()
+    sut.goal = 1000
     
     // when
-    sut.restart()
+    sut.steps = 1000
     
     // then
-    XCTAssertEqual(sut.appState, .notStarted)
+    XCTAssertTrue(sut.goalReached)
+  }
+  
+  // MARK: - Nessie
+  func testModel_whenStarted_userIsNotCaught() {
+    XCTAssertFalse(sut.caught)
+  }
+  
+  func testModel_whenUserAheadOfNessie_isNotCaught() {
+    // given
+    sut.distance = 1000
+    sut.nessie.distance = 100
+    
+    // then
+    XCTAssertFalse(<#T##expression: Bool##Bool#>)
   }
 }

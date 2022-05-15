@@ -17,7 +17,19 @@
 		4CBCDEB72701426800E8992C /* StepCountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEB62701426800E8992C /* StepCountController.swift */; };
 		4CBCDEBC270142DF00E8992C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEBB270142DF00E8992C /* AppState.swift */; };
 		4CBCDEBE270142EE00E8992C /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEBD270142EE00E8992C /* AppModel.swift */; };
+		83CEBD6327D5928100B4654E /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEBD6227D5928100B4654E /* AppModelTests.swift */; };
+		83CEBD6527D5957B00B4654E /* StepCountControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEBD6427D5957B00B4654E /* StepCountControllerTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83CEBD5D27D591F600B4654E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 185CB1F023C78CE6009F7571 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 185CB1F723C78CE6009F7571;
+			remoteInfo = FitNess;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		180DC61423C78D9800486B1A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,10 +44,20 @@
 		4CBCDEB62701426800E8992C /* StepCountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountController.swift; sourceTree = "<group>"; };
 		4CBCDEBB270142DF00E8992C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		4CBCDEBD270142EE00E8992C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		83CEBD5927D591F600B4654E /* FitNessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83CEBD6227D5928100B4654E /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
+		83CEBD6427D5957B00B4654E /* StepCountControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		185CB1F523C78CE6009F7571 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83CEBD5627D591F600B4654E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				185CB1FA23C78CE6009F7571 /* FitNess */,
+				83CEBD5A27D591F600B4654E /* FitNessTests */,
 				185CB1F923C78CE6009F7571 /* Products */,
 			);
 			indentWidth = 2;
@@ -59,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				185CB1F823C78CE6009F7571 /* FitNess.app */,
+				83CEBD5927D591F600B4654E /* FitNessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +137,39 @@
 			path = "App Model";
 			sourceTree = "<group>";
 		};
+		83CEBD5A27D591F600B4654E /* FitNessTests */ = {
+			isa = PBXGroup;
+			children = (
+				83CEBD6627D595BA00B4654E /* Cases */,
+			);
+			path = FitNessTests;
+			sourceTree = "<group>";
+		};
+		83CEBD6627D595BA00B4654E /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				83CEBD6827D595CD00B4654E /* UI Layer */,
+				83CEBD6727D595C000B4654E /* App Model */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		83CEBD6727D595C000B4654E /* App Model */ = {
+			isa = PBXGroup;
+			children = (
+				83CEBD6227D5928100B4654E /* AppModelTests.swift */,
+			);
+			path = "App Model";
+			sourceTree = "<group>";
+		};
+		83CEBD6827D595CD00B4654E /* UI Layer */ = {
+			isa = PBXGroup;
+			children = (
+				83CEBD6427D5957B00B4654E /* StepCountControllerTests.swift */,
+			);
+			path = "UI Layer";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,18 +191,41 @@
 			productReference = 185CB1F823C78CE6009F7571 /* FitNess.app */;
 			productType = "com.apple.product-type.application";
 		};
+		83CEBD5827D591F600B4654E /* FitNessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83CEBD6127D591F600B4654E /* Build configuration list for PBXNativeTarget "FitNessTests" */;
+			buildPhases = (
+				83CEBD5527D591F600B4654E /* Sources */,
+				83CEBD5627D591F600B4654E /* Frameworks */,
+				83CEBD5727D591F600B4654E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83CEBD5E27D591F600B4654E /* PBXTargetDependency */,
+			);
+			name = FitNessTests;
+			productName = FitNessTests;
+			productReference = 83CEBD5927D591F600B4654E /* FitNessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		185CB1F023C78CE6009F7571 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Ray Wenderlich";
 				TargetAttributes = {
 					185CB1F723C78CE6009F7571 = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					83CEBD5827D591F600B4654E = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+						TestTargetID = 185CB1F723C78CE6009F7571;
 					};
 				};
 			};
@@ -163,6 +243,7 @@
 			projectRoot = "";
 			targets = (
 				185CB1F723C78CE6009F7571 /* FitNess */,
+				83CEBD5827D591F600B4654E /* FitNessTests */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +256,13 @@
 				180DC61523C78D9800486B1A /* LaunchScreen.storyboard in Resources */,
 				185CB20523C78CE8009F7571 /* Assets.xcassets in Resources */,
 				185CB20323C78CE6009F7571 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83CEBD5727D591F600B4654E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +304,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83CEBD5527D591F600B4654E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83CEBD6327D5928100B4654E /* AppModelTests.swift in Sources */,
+				83CEBD6527D5957B00B4654E /* StepCountControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83CEBD5E27D591F600B4654E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 185CB1F723C78CE6009F7571 /* FitNess */;
+			targetProxy = 83CEBD5D27D591F600B4654E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		185CB20123C78CE6009F7571 /* Main.storyboard */ = {
@@ -380,6 +485,57 @@
 			};
 			name = Release;
 		};
+		83CEBD5F27D591F600B4654E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.FitNessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNess.app/FitNess";
+			};
+			name = Debug;
+		};
+		83CEBD6027D591F600B4654E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.FitNessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNess.app/FitNess";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -397,6 +553,15 @@
 			buildConfigurations = (
 				185CB20D23C78CE8009F7571 /* Debug */,
 				185CB20E23C78CE8009F7571 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CEBD6127D591F600B4654E /* Build configuration list for PBXNativeTarget "FitNessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CEBD5F27D591F600B4654E /* Debug */,
+				83CEBD6027D591F600B4654E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
