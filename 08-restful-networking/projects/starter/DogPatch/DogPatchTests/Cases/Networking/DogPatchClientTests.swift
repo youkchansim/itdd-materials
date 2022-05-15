@@ -34,6 +34,9 @@ class DogPatchClientTests: XCTestCase {
   var sut: DogPatchClient!
   var baseURL: URL!
   var mockSession: MockURLSession!
+  var getDogsURL: URL {
+    return URL(string: "dogs", relativeTo: baseURL)!
+  }
   
   override func setUp() {
     super.setUp()
@@ -58,8 +61,6 @@ class DogPatchClientTests: XCTestCase {
   }
   
   func test_getDogs_callsExpectedURL() {
-    // given
-    let getDogsURL = URL(string: "dogs", relativeTo: baseURL)!
     // when
     let mockTask = sut.getDogs() { _, _ in }
       as! MockURLSessionTask
@@ -76,8 +77,7 @@ class DogPatchClientTests: XCTestCase {
   }
   
   func test_getDogs_givenResponseStatusCode500_callsCompletion() {
-    // given
-    let getDogsURL = URL(string: "dogs", relativeTo: baseURL)!
+    // given    
     let response = HTTPURLResponse(url: getDogsURL,
                                    statusCode: 500,
                                    httpVersion: nil,
