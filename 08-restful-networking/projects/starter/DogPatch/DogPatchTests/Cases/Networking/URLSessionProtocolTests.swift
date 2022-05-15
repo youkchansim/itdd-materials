@@ -53,4 +53,16 @@ class URLSessionProtocolTests: XCTestCase {
   func test_URLSession_conformsTo_URLSessionProtocol() {
     XCTAssertTrue((session as AnyObject) is URLSessionProtocol)
   }
+  
+  func test_URLSession_makeDataTask_createsTaskWithPassedInURL() {
+    // given
+    let url = URL(string: "https://example.com")!
+    // when
+    let task = session.makeDataTask(
+      with: url,
+      completionHandler: { _, _, _ in })
+    as! URLSessionTask
+    // then
+    XCTAssertEqual(task.originalRequest?.url, url)
+  }
 }
