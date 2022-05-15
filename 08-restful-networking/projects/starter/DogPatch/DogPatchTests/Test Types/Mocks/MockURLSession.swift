@@ -28,32 +28,31 @@
 
 @testable import DogPatch
 import Foundation
-import XCTest
 
-class DogPatchClientTests: XCTestCase {
-  var sut: DogPatchClient!
-  var baseURL: URL!
-  var mockSession: MockURLSession!
+// 1
+class MockURLSession: URLSessionProtocol {
+  func makeDataTask(
+    with url: URL,
+    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTaskProtocol {
+      return MockURLSessionTask(
+        completionHandler: completionHandler,
+        url: url)
+  }
+}
+
+// 2
+class MockURLSessionTask: URLSessionTaskProtocol {
+  var completionHandler: (Data?, URLResponse?, Error?) -> Void
+  var url: URL
   
-  override func setUp() {
-    super.setUp()
-    baseURL = URL(string: "https://example.com/api/v1/")!
-    mockSession = MockURLSession()
-    sut = DogPatchClient(baseURL: baseURL, session: mockSession)
+  init(completionHandler:
+    @escaping (Data?, URLResponse?, Error?) -> Void,
+       url: URL) {
+    self.completionHandler = completionHandler
+    self.url = url
   }
   
-  override func tearDown() {
-    baseURL = nil
-    mockSession = nil
-    sut = nil
-    super.tearDown()
-  }
-  
-  func test_init_sets_baseURL() {
-    XCTAssertEqual(sut.baseURL, baseURL)
-  }
-  
-  func test_init_sets_session() {
-    XCTAssertTrue(sut.session === mockSession)
+  // 3
+  func resume() {
   }
 }

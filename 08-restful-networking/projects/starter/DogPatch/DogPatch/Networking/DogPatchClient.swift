@@ -30,9 +30,9 @@ import Foundation
 
 class DogPatchClient {
   let baseURL: URL
-  let session: URLSession
+  let session: URLSessionProtocol
   
-  init(baseURL: URL, session: URLSession) {
+  init(baseURL: URL, session: URLSessionProtocol) {
     self.baseURL = baseURL
     self.session = session
   }
