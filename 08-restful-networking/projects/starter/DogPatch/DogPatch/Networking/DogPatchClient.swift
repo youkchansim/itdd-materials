@@ -42,7 +42,7 @@ class DogPatchClient {
     let url = URL(string: "dogs", relativeTo: baseURL)!
     let task = session.makeDataTask(with: url) { data, response, error in
       guard let response = response as? HTTPURLResponse,
-            response.statusCode == 200 else {
+            response.statusCode == 200, error == nil else {
         completion(nil, error)
         return
       }      
