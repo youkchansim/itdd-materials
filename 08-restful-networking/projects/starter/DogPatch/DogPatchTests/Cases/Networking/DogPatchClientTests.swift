@@ -32,4 +32,23 @@ import XCTest
 
 class DogPatchClientTests: XCTestCase {
   var sut: DogPatchClient!
+  
+  func test_init_sets_baseURL() {
+    // given
+    let baseURL = URL(string: "https://example.com/api/v1/")!
+    // when
+    sut = DogPatchClient(baseURL: baseURL)
+    // then
+    XCTAssertEqual(sut.baseURL, baseURL)
+  }
+  
+  func test_init_sets_session() {
+    // given
+    let baseURL = URL(string: "https://example.com/api/v1/")!
+    let session = URLSession.shared
+    // when
+    sut = DogPatchClient(baseURL: baseURL, session: session)
+    // then
+    XCTAssertEqual(sut.session, session)
+  }
 }
