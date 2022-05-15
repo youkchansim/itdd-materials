@@ -40,7 +40,13 @@ class DogPatchClient {
   func getDogs(completion: @escaping
     ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol {
     let url = URL(string: "dogs", relativeTo: baseURL)!
-    let task = session.makeDataTask(with: url) { _, _, _ in }
+    let task = session.makeDataTask(with: url) { data, response, error in
+      guard let response = response as? HTTPURLResponse,
+            response.statusCode == 200 else {
+        completion(nil, error)
+        return
+      }      
+    }
     task.resume()
     return task
   }
