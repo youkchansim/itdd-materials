@@ -31,19 +31,21 @@ import XCTest
 
 class URLSessionProtocolTests: XCTestCase {
   var session: URLSession!
+  var url: URL!
+  
   override func setUp() {
     super.setUp()
     session = URLSession(configuration: .default)
+    url = URL(string: "https://example.com")!
   }
   
   override func tearDown() {
     session = nil
+    url = nil
     super.tearDown()
   }
 
   func test_URLSessionTask_conformsTo_URLSessionTaskProtocol() {
-    // given
-    let url = URL(string: "https://example.com")!
     // when
     let task = session.dataTask(with: url)
     // then
@@ -54,9 +56,7 @@ class URLSessionProtocolTests: XCTestCase {
     XCTAssertTrue((session as AnyObject) is URLSessionProtocol)
   }
   
-  func test_URLSession_makeDataTask_createsTaskWithPassedInURL() {
-    // given
-    let url = URL(string: "https://example.com")!
+  func test_URLSession_makeDataTask_createsTaskWithPassedInURL() {    
     // when
     let task = session.makeDataTask(
       with: url,
