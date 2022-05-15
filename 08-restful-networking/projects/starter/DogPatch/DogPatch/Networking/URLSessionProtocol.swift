@@ -47,8 +47,7 @@ extension URLSession: URLSessionProtocol {
     with url: URL,
     completionHandler:
       @escaping (Data?, URLResponse?, Error?) -> Void)
-  -> URLSessionTaskProtocol {
-    let url = URL(string: "http://fake.example.com")!
+  -> URLSessionTaskProtocol {    
     return dataTask(with: url, completionHandler: { _, _, _ in } )
   }
 }
