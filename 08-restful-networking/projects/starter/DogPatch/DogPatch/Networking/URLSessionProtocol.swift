@@ -48,6 +48,6 @@ extension URLSession: URLSessionProtocol {
     completionHandler:
       @escaping (Data?, URLResponse?, Error?) -> Void)
   -> URLSessionTaskProtocol {    
-    return dataTask(with: url, completionHandler: { _, _, _ in } )
+    return dataTask(with: url, completionHandler: completionHandler)
   }
 }
