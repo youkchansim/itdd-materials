@@ -37,15 +37,26 @@ class DogPatchClient {
     self.session = session
   }
   
+  // Test를 pass하기 위해
+  // 1. getDogs(completion:)의 guard statement를 교체
+  //      -> let data 를 guard pass 조건으로 추가
+  // 2. guard closing에 json으로 디코드 하는 구문을 추가
+  //      -> try! 구문이 위험해보이는가? 맞음!
+  //      -> 그리고 이게 너가 또 다른 테스트를 해야하는 지표이다.
   func getDogs(completion: @escaping
     ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol {
     let url = URL(string: "dogs", relativeTo: baseURL)!
     let task = session.makeDataTask(with: url) { data, response, error in
       guard let response = response as? HTTPURLResponse,
-            response.statusCode == 200, error == nil else {
+            response.statusCode == 200,
+            error == nil,
+            let data = data else {
         completion(nil, error)
         return
-      }      
+      }
+      let decoder = JSONDecoder()
+      let dogs = try! decoder.decode([Dog].self, from: data)
+      completion(dogs, nil)
     }
     task.resume()
     return task
