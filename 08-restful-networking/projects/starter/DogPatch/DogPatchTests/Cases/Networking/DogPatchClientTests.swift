@@ -120,4 +120,31 @@ class DogPatchClientTests: XCTestCase {
     let actualError = try XCTUnwrap(result.error as NSError?)
     XCTAssertEqual(actualError, expectedError)
   }
+  
+  func test_getDogs_givenValidJSON_callsCompletionWithDogs()
+    throws {
+      // given
+      // First, JSON filename으로 Data.fromJSON 호출하여 데이터를 만든다.
+      let data = try Data.fromJSON(fileName: "GET_Dogs_Response")
+      
+      // 새로운 JSONDecoder를 만들고, data를 decode한다.
+      // Dog는 이미 Decodable을 채택하고 있고, DogTest.swift 에서 테스트를 통과했기 때문에 문제가 없다.
+      let decoder = JSONDecoder()
+      let dogs = try decoder.decode([Dog].self, from: data)
+      
+      // when
+      // 그리고 다른 테스트들처럼 whenGetDogs를 호출한다.
+      // 하지만 이번에는 데이터를 집어넣는다.
+      let result = whenGetDogs(data: data)
+      
+      // then
+      // 마지막으로
+      // `calledCompletion이 불렸음`
+      // `dogs는 result.dogs와 같음`
+      // `error가 nill임`
+      // 을 확인한다.
+      XCTAssertTrue(result.calledCompletion)
+      XCTAssertEqual(result.dogs, dogs)
+      XCTAssertNil(result.error)
+  }
 }
