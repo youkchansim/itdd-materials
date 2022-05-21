@@ -147,4 +147,42 @@ class DogPatchClientTests: XCTestCase {
       XCTAssertEqual(result.dogs, dogs)
       XCTAssertNil(result.error)
   }
+  
+  // try!를 제거하기 위한 리팩토링 과정
+  // 만약 서버에서 200을 내려주었으나, Dogs로 JSON 파싱이 실패할 경우 앱 크래시가 발생할 수 있음.
+  func test_getDogs_givenInvalidJSON_callsCompletionWithError()
+    throws {
+    // given
+      // GET_Dogs_MissingValuesResponse 를 통해 데이터를 셋업
+      // JSON array에는 맞으나, deserialize에 필요한 id가 없는 상태.
+    let data = try Data.fromJSON(
+      fileName: "GET_Dogs_MissingValuesResponse")
+    
+      // deserialize 시도! -> 에러 발생
+    var expectedError: NSError!
+    let decoder = JSONDecoder()
+    do {
+      _ = try decoder.decode([Dog].self, from: data)
+    } catch {
+      expectedError = error as NSError
+    }
+    
+    // when
+      // whenGetDogs 를 부르고
+    let result = whenGetDogs(data: data)
+    
+    // then
+      // `calledCompletion`
+      // `result.dogs 이 비었는지`
+      // `expectedError` 가 같은 도메인인지,
+      // `expectedError` 가 같은 코드인지
+      // 테스트한다.
+    XCTAssertTrue(result.calledCompletion)
+    XCTAssertNil(result.dogs)
+    let actualError = try XCTUnwrap(result.error as NSError?)
+      // NSError로 변환해야하는데, Error는 directly comparable하지 않기 때문이다.
+      // NSError로 변환함으로써, domain과 code를 다른 Error와 같은 에러인지 `아주 충분히` 비교 가능해진다.
+    XCTAssertEqual(actualError.domain, expectedError.domain)
+    XCTAssertEqual(actualError.code, expectedError.code)
+  }
 }
