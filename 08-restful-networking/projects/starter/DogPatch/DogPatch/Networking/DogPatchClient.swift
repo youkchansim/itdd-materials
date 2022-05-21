@@ -55,10 +55,13 @@ class DogPatchClient {
         return
       }
       let decoder = JSONDecoder()
-      // TDD 여기서 에러가 났지만 `오히려 좋아!`
-      // 이 맛에 TDD 하는거지! 
-      let dogs = try! decoder.decode([Dog].self, from: data)
-      completion(dogs, nil)
+      
+      do {
+        let dogs = try decoder.decode([Dog].self, from: data)
+        completion(dogs, nil)
+      } catch {
+        completion(nil, error)
+      }
     }
     task.resume()
     return task

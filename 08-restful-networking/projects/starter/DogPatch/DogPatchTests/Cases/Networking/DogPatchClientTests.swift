@@ -148,8 +148,6 @@ class DogPatchClientTests: XCTestCase {
       XCTAssertNil(result.error)
   }
   
-  // try!를 제거하기 위한 리팩토링 과정
-  // 만약 서버에서 200을 내려주었으나, Dogs로 JSON 파싱이 실패할 경우 앱 크래시가 발생할 수 있음.
   func test_getDogs_givenInvalidJSON_callsCompletionWithError()
     throws {
     // given
