@@ -81,6 +81,18 @@ class DogPatchClientTests: XCTestCase {
     XCTAssertTrue(sut.session === mockSession)
   }
   
+  //‘Adding a response queue’
+  func test_init_sets_responseQueue() {
+    // given
+    let responseQueue = DispatchQueue.main
+    
+    // when
+    sut = DogPatchClient(baseURL: baseURL,
+                         session: mockSession,
+                         responseQueue: nil)
+    XCTAssertEqual(sut.responseQueue, responseQueue)
+  }
+  
   func test_getDogs_callsExpectedURL() {
     // when
     let mockTask = sut.getDogs() { _, _ in }
