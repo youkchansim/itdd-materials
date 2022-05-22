@@ -30,13 +30,25 @@
 import Foundation
 
 // 1
+// Updating the mocks
 class MockURLSession: URLSessionProtocol {
+  
+  // 1. 새로운 프로퍼티 추가
+  var queue: DispatchQueue? = nil
+  
+  // 2. 새로운 함수 추가
+  //    ㄴ 기존 테스트들은 이 큐가 필요가 없다. 따라서 새로운 테스트들에서만 사용할 것이다.
+  func givenDispatchQueue() {
+    queue = DispatchQueue(label: "com.DogPatchTests.MockSession")
+  }
+  
   func makeDataTask(
     with url: URL,
     completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTaskProtocol {
       return MockURLSessionTask(
         completionHandler: completionHandler,
-        url: url)
+        url: url,
+        queue: queue)
   }
 }
 
@@ -46,10 +58,22 @@ class MockURLSessionTask: URLSessionTaskProtocol {
   var url: URL
   var calledResume = false
   
+  // 3. MockURLSessionTask update
+  // queue가 들어오면 completionHandler에 'queue에 dispatch asynchronously'를 담아 넣어준다. completionHandler가 불리기 전에.
+  // 이 방식은 dispatch queue에 대한 `진짜 URLDataTask Dispatches` 방식과 매우 흡사하다.
   init(completionHandler:
-    @escaping (Data?, URLResponse?, Error?) -> Void,
-       url: URL) {
-    self.completionHandler = completionHandler
+       @escaping (Data?, URLResponse?, Error?) -> Void,
+       url: URL,
+       queue: DispatchQueue?) {
+    if let queue = queue {
+      self.completionHandler = { data, response, error in
+        queue.async() {
+          completionHandler(data, response, error)
+        }
+      }
+    } else {
+      self.completionHandler = completionHandler
+    }
     self.url = url
   }
   
