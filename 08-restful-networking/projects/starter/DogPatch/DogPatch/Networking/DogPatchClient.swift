@@ -82,7 +82,15 @@ class DogPatchClient {
       
       do {
         let dogs = try decoder.decode([Dog].self, from: data)
-        completion(dogs, nil)
+        // Error 핸들링 때와 비슷하지만, 이 코드는 responseQueue와 dispatches dogs에 대한 것이다.
+        guard let responseQueue = self.responseQueue else {
+          completion(dogs, nil)
+          return
+        }
+        responseQueue.async {
+          completion(dogs, nil)
+        }
+        
       } catch {
         completion(nil, error)
       }
