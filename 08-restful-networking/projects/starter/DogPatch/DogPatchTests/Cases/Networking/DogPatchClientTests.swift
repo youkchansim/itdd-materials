@@ -141,9 +141,7 @@ class DogPatchClientTests: XCTestCase {
     mockTask.completionHandler(nil, response, error)
     
     // then
-    waitForExpectations(timeout: 0.2) { _ in
-      XCTAssertTrue(thread.isMainThread)
-    }
+    verifyGetDogsDispatchedToMain(error: error)
   }
   
   func test_init_sets_baseURL() {
