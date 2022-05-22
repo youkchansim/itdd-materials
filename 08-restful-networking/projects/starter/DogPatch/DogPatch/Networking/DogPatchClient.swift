@@ -98,4 +98,21 @@ class DogPatchClient {
     task.resume()
     return task
   }
+  
+  // 중복 함수를 제거해주기 위해 추가한 함수
+  // genericType 이기 때문에 어떤 model이든 사용 가능,
+  // input 에 상관없이 항상 responseQueue와 dispatches the completion이 있는지 확인한다.
+  // 만약 responseQueue가 없으면, input을 completion에 넘겨줄 것이다.
+  private func dispatchResult<Type>(
+    models: Type? = nil,
+    error: Error? = nil,
+    completion: @escaping (Type?, Error?) -> Void) {
+    guard let responseQueue = responseQueue else {
+      completion(models, error)
+      return
+    }
+    responseQueue.async {
+      completion(models, error)
+    }
+  }
 }
