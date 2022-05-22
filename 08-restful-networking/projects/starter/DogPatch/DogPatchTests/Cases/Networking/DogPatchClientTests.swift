@@ -76,15 +76,21 @@ class DogPatchClientTests: XCTestCase {
   // ## Handling dispatch scenarios ##
   // ### An HTTP status code indicates a failure response. ###
   func test_getDogs_givenHTTPStatusError_dispatchesToResponseQueue() {
-    // given
-    // 1. mockSession.givenDispatchQueue을 불러 queue 에 mockSession을 넣을 것이다.
-    // 2. responseQueue로 .main을 사용해 sut을 만든다.
+    verifyGetDogsDispatchedToMain(statusCode: 500)
+  }
+  
+  // 이 함수는 data, statusCode, error를 받는다.
+  // 또한 line을 추가로 받음으로, `helper 함수` 대신에 `테스트 함수의 line number`에 실패하도록 하였다.
+  func verifyGetDogsDispatchedToMain(data: Data? = nil,
+                                     statusCode: Int = 200,
+                                     error: Error? = nil,
+                                     line: UInt = #line) {
+    
     mockSession.givenDispatchQueue()
     sut = DogPatchClient(baseURL: baseURL,
                          session: mockSession,
                          responseQueue: .main)
     
-    // 3. 마지막으로 expectation을 만든다.
     let expectation = self.expectation(
       description: "Completion wasn't called")
     
@@ -93,25 +99,52 @@ class DogPatchClientTests: XCTestCase {
     let mockTask = sut.getDogs() { dogs, error in
       thread = Thread.current
       expectation.fulfill()
-    } as! MockURLSessionTask
+      } as! MockURLSessionTask
     
     let response = HTTPURLResponse(url: getDogsURL,
-                                   statusCode: 500,
+                                   statusCode: statusCode,
                                    httpVersion: nil,
                                    headerFields: nil)
-    mockTask.completionHandler(nil, response, nil)
+    mockTask.completionHandler(data, response, error)
     
     // then
-    waitForExpectations(timeout: 0.1) { _ in
+    waitForExpectations(timeout: 0.2) { _ in
+      XCTAssertTrue(thread.isMainThread, line: line)
+    }
+  }
+  
+  // ## Handling dispatch scenarios ##
+  // ### ensuring an HTTP error dispatches on the response queue ###
+  // 이전 것과 비슷하지만 mockTask.completionHandler에 Erorr를 넘기는 테스트 진행.
+  func test_getDogs_givenError_dispatchesToResponseQueue() {
+    // given
+    mockSession.givenDispatchQueue()
+    sut = DogPatchClient(baseURL: baseURL,
+                         session: mockSession,
+                         responseQueue: .main)
+    
+    let expectation = self.expectation(
+      description: "Completion wasn't called")
+    
+    // when
+    var thread: Thread!
+    let mockTask = sut.getDogs() { dogs, error in
+      thread = Thread.current
+      expectation.fulfill()
+      } as! MockURLSessionTask
+    
+    let response = HTTPURLResponse(url: getDogsURL,
+                                   statusCode: 200,
+                                   httpVersion: nil,
+                                   headerFields: nil)
+    let error = NSError(domain: "com.DogPatchTests", code: 42)
+    mockTask.completionHandler(nil, response, error)
+    
+    // then
+    waitForExpectations(timeout: 0.2) { _ in
       XCTAssertTrue(thread.isMainThread)
     }
   }
-  // 기술적으로는 ResponseQueue에 아무 queue나 넣을 수 있지만, 개발적으로는 main을 넣어야한다.
-  // 슬프게도 지금 도는 큐가 어떤 친구인지는 테스트하기가 엄청 힘들다..  (애플!!!!! 우리 unit test필요하다는 거 모르니?)
-  // 다행히 current Thread가 main thread인지 테스트하기는 쉽다.
-  // 그리고 main DispatchQueue 는 언제나 main Thread에서 돈다.
-  // 이런 사실들에 기반하여, `main queue에 dispatch되고 있음`을 증명해야한다.
-  
   
   func test_init_sets_baseURL() {
     XCTAssertEqual(sut.baseURL, baseURL)

@@ -59,6 +59,10 @@ class DogPatchClient {
     let task = session.makeDataTask(with: url) { [weak self] data, response, error in
       guard let self = self else { return }
       
+      // Error가 response.statusCode랑 같은 부분에서 체크하고 있음을 확인할 수 있다.
+      // 그리고 이미 Error를 보내고 있는 상태이다.
+      // 그럼 이 테스트는 유용하지 않은가? -> No! 유용해!
+      // 그러므로 여기는 그대로 두고, 리팩토링으로 넘어가자.
       guard let response = response as? HTTPURLResponse,
             response.statusCode == 200,
             error == nil,
