@@ -55,12 +55,23 @@ class DogPatchClient {
   func getDogs(completion: @escaping
     ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol {
     let url = URL(string: "dogs", relativeTo: baseURL)!
-    let task = session.makeDataTask(with: url) { data, response, error in
+    // strong reference cycle을 피하기 위해 [weak self] 추가
+    let task = session.makeDataTask(with: url) { [weak self] data, response, error in
+      guard let self = self else { return }
+      
       guard let response = response as? HTTPURLResponse,
             response.statusCode == 200,
             error == nil,
             let data = data else {
-        completion(nil, error)
+        // 이 코드들은 만약 responseQueue가 셋 되었는지를 확인해줄 것이다.
+        // 그리고 셋 되었다면 call을 dispatch해 줄 것이다.
+        guard let responseQueue = self.responseQueue else {
+          completion(nil, error)
+          return
+        }
+        responseQueue.async {
+          completion(nil, error)
+        }
         return
       }
       let decoder = JSONDecoder()
