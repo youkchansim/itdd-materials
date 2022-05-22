@@ -31,13 +31,14 @@ import Foundation
 class DogPatchClient {
   let baseURL: URL
   let session: URLSessionProtocol
-  let responseQueue: DispatchQueue? = nil
+  var responseQueue: DispatchQueue? = nil
   
   init(baseURL: URL,
        session: URLSessionProtocol,
        responseQueue: DispatchQueue?) {
     self.baseURL = baseURL
     self.session = session
+    self.responseQueue = responseQueue
   }
   
   init(baseURL: URL, session: URLSessionProtocol) {

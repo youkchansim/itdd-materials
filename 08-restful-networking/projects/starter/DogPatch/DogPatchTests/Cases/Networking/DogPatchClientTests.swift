@@ -89,7 +89,7 @@ class DogPatchClientTests: XCTestCase {
     // when
     sut = DogPatchClient(baseURL: baseURL,
                          session: mockSession,
-                         responseQueue: nil)
+                         responseQueue: responseQueue)
     XCTAssertEqual(sut.responseQueue, responseQueue)
   }
   
