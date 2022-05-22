@@ -67,29 +67,14 @@ class DogPatchClient {
             response.statusCode == 200,
             error == nil,
             let data = data else {
-        // 이 코드들은 만약 responseQueue가 셋 되었는지를 확인해줄 것이다.
-        // 그리고 셋 되었다면 call을 dispatch해 줄 것이다.
-        guard let responseQueue = self.responseQueue else {
-          completion(nil, error)
-          return
-        }
-        responseQueue.async {
-          completion(nil, error)
-        }
+        self.dispatchResult(error: error, completion: completion)
         return
       }
       let decoder = JSONDecoder()
       
       do {
         let dogs = try decoder.decode([Dog].self, from: data)
-        // Error 핸들링 때와 비슷하지만, 이 코드는 responseQueue와 dispatches dogs에 대한 것이다.
-        guard let responseQueue = self.responseQueue else {
-          completion(dogs, nil)
-          return
-        }
-        responseQueue.async {
-          completion(dogs, nil)
-        }
+        self.dispatchResult(models: dogs, completion: completion)
         
       } catch {
         completion(nil, error)
