@@ -73,6 +73,46 @@ class DogPatchClientTests: XCTestCase {
       return (calledCompletion, receivedDogs, receivedError)
   }
   
+  // ## Handling dispatch scenarios ##
+  // ### An HTTP status code indicates a failure response. ###
+  func test_getDogs_givenHTTPStatusError_dispatchesToResponseQueue() {
+    // given
+    // 1. mockSession.givenDispatchQueue을 불러 queue 에 mockSession을 넣을 것이다.
+    // 2. responseQueue로 .main을 사용해 sut을 만든다.
+    mockSession.givenDispatchQueue()
+    sut = DogPatchClient(baseURL: baseURL,
+                         session: mockSession,
+                         responseQueue: .main)
+    
+    // 3. 마지막으로 expectation을 만든다.
+    let expectation = self.expectation(
+      description: "Completion wasn't called")
+    
+    // when
+    var thread: Thread!
+    let mockTask = sut.getDogs() { dogs, error in
+      thread = Thread.current
+      expectation.fulfill()
+    } as! MockURLSessionTask
+    
+    let response = HTTPURLResponse(url: getDogsURL,
+                                   statusCode: 500,
+                                   httpVersion: nil,
+                                   headerFields: nil)
+    mockTask.completionHandler(nil, response, nil)
+    
+    // then
+    waitForExpectations(timeout: 0.1) { _ in
+      XCTAssertTrue(thread.isMainThread)
+    }
+  }
+  // 기술적으로는 ResponseQueue에 아무 queue나 넣을 수 있지만, 개발적으로는 main을 넣어야한다.
+  // 슬프게도 지금 도는 큐가 어떤 친구인지는 테스트하기가 엄청 힘들다..  (애플!!!!! 우리 unit test필요하다는 거 모르니?)
+  // 다행히 current Thread가 main thread인지 테스트하기는 쉽다.
+  // 그리고 main DispatchQueue 는 언제나 main Thread에서 돈다.
+  // 이런 사실들에 기반하여, `main queue에 dispatch되고 있음`을 증명해야한다.
+  
+  
   func test_init_sets_baseURL() {
     XCTAssertEqual(sut.baseURL, baseURL)
   }
