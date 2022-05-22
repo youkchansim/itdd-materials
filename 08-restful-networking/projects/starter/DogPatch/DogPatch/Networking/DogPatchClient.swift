@@ -77,7 +77,7 @@ class DogPatchClient {
         self.dispatchResult(models: dogs, completion: completion)
         
       } catch {
-        completion(nil, error)
+        self.dispatchResult(error: error, completion: completion)
       }
     }
     task.resume()
