@@ -144,6 +144,18 @@ class DogPatchClientTests: XCTestCase {
     verifyGetDogsDispatchedToMain(error: error)
   }
   
+  // ## Handling dispatch scenarios ##
+  // ### ensuring a valid response dispatches to the response queue ###
+  func test_getDogs_givenGoodResponse_dispatchesToResponseQueue()
+    throws {
+    // given
+    let data = try Data.fromJSON(
+      fileName: "GET_Dogs_Response")
+    
+    // then
+    verifyGetDogsDispatchedToMain(data: data)
+  }
+  
   func test_init_sets_baseURL() {
     XCTAssertEqual(sut.baseURL, baseURL)
   }
