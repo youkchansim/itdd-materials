@@ -123,7 +123,14 @@ class DogPatchClientTests: XCTestCase {
     XCTAssertTrue(
       DogPatchClient.shared.session === URLSession.shared)
   }
-   
+  
+  // 컴파일 에러를 막기 위해 sub -> AnyObject로 캐스팅 -> is DogPatchService
+  // DogPatchService가 없어서 컴파일 에러
+  // [CompileError] Cannot find type 'DogPatchService' in scope
+  func test_conformsTo_DogPatchService() {
+    XCTAssertTrue((sut as AnyObject) is DogPatchService)
+  }
+
   func test_shared_setsBaseURL() {
     // given
     // 1. 예상되는 baseURL 생성. -> 실제 서버 URL에 해당
