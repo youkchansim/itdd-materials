@@ -112,6 +112,12 @@ class DogPatchClientTests: XCTestCase {
     }
   }
   
+  // DogPatchClient.shared.session이 URLSession.shared와 포인터 같음을 확인
+  func test_shared_setsSession() {
+    XCTAssertTrue(
+      DogPatchClient.shared.session === URLSession.shared)
+  }
+  
   func test_shared_setsBaseURL() {
     // given
     // 1. 예상되는 baseURL 생성. -> 실제 서버 URL에 해당
