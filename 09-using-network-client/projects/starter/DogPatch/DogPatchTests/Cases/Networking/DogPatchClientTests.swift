@@ -123,7 +123,7 @@ class DogPatchClientTests: XCTestCase {
     XCTAssertTrue(
       DogPatchClient.shared.session === URLSession.shared)
   }
-  
+   
   func test_shared_setsBaseURL() {
     // given
     // 1. 예상되는 baseURL 생성. -> 실제 서버 URL에 해당
