@@ -43,6 +43,7 @@ class ListingsViewControllerTests: XCTestCase {
   
   // sut.networkClient와 DogPatchClient.shared 비교
   // [CompileError] Value of type 'ListingsViewController' has no member 'networkClient'
+  // 여전히 실패 XCTAssertTrue failed
   func test_networkClient_setToDogPatchClient() {
     XCTAssertTrue(sut.networkClient === DogPatchClient.shared)
   }
