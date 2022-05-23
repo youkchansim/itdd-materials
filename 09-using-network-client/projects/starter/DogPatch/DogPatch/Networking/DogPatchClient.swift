@@ -38,7 +38,7 @@ class DogPatchClient {
   static let shared = DogPatchClient(
     baseURL: URL(string:"https://dogpatchserver.herokuapp.com/api/v1/")!,
     session: URLSession.shared,
-    responseQueue: nil)
+    responseQueue: .main)
   
 
   init(baseURL: URL,
