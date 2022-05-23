@@ -49,6 +49,7 @@
 		42D837B022B6C0830036C5DD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D837AF22B6C0830036C5DD /* Colors.xcassets */; };
 		42D837B322B6CE2D0036C5DD /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837B222B6CE2D0036C5DD /* Dog.swift */; };
 		42D837BE22B6DAD50036C5DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837BD22B6DAD50036C5DD /* User.swift */; };
+		50505B1F283BDE69002D8B22 /* MockDogPatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50505B1E283BDE69002D8B22 /* MockDogPatchService.swift */; };
 		9581B4AC2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */; };
 		9581B4AD2316F32D00A78286 /* StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */; };
 		9581B4B12316F35D00A78286 /* UIView+NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */; };
@@ -116,6 +117,7 @@
 		42D837AF22B6C0830036C5DD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		42D837B222B6CE2D0036C5DD /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		42D837BD22B6DAD50036C5DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		50505B1E283BDE69002D8B22 /* MockDogPatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogPatchService.swift; sourceTree = "<group>"; };
 		9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryboardCreatable.swift"; sourceTree = "<group>"; };
 		9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardCreatable.swift; sourceTree = "<group>"; };
 		9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibCreatable.swift"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				423CB53C2718239700375DE0 /* MockURLSession.swift */,
+				50505B1E283BDE69002D8B22 /* MockDogPatchService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				42335BF222BD179600E21A72 /* UIView+ApplyShaddowTests.swift in Sources */,
 				9581B4B72316F44400A78286 /* LogoNavigationItemTests.swift in Sources */,
 				424E577A22E0C47A00C96D45 /* XCTAssertEqualToAny.swift in Sources */,
+				50505B1F283BDE69002D8B22 /* MockDogPatchService.swift in Sources */,
 				42A255A522BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift in Sources */,
 				427CCB0822BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift in Sources */,
 				9581B4B92316F48E00A78286 /* DecodableTestCase.swift in Sources */,
