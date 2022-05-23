@@ -29,7 +29,7 @@
 import Foundation
 
 protocol DogPatchService {
-
+  func getDogs(completion: @escaping ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol
 }
 
 class DogPatchClient {
