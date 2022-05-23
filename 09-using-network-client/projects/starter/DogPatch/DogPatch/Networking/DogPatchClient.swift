@@ -91,3 +91,5 @@ class DogPatchClient {
     }
   }
 }
+
+extension DogPatchClient: DogPatchService { }
