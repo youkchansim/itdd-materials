@@ -112,6 +112,11 @@ class DogPatchClientTests: XCTestCase {
     }
   }
   
+  // ResponseQueue 확인.
+  func test_shared_setsResponseQueue() {
+    XCTAssertEqual(DogPatchClient.shared.responseQueue, .main)
+  }
+  
   // DogPatchClient.shared.session이 URLSession.shared와 포인터 같음을 확인
   func test_shared_setsSession() {
     XCTAssertTrue(
