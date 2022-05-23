@@ -112,6 +112,19 @@ class DogPatchClientTests: XCTestCase {
     }
   }
   
+  func test_shared_setsBaseURL() {
+    // given
+    // 1. 예상되는 baseURL 생성. -> 실제 서버 URL에 해당
+    let baseURL = URL(
+      string: "https://dogpatchserver.herokuapp.com/api/v1/")!
+    
+    // then
+    // 2. DogPatchClient.shared.baseURL과 baseURL 비교.
+    //      ㄴ [CompileError] Type 'DogPatchClient' has no member 'shared'
+    // -> CompileError도 `테스트 실패`에 해당하기 때문에 수정 가능!
+    XCTAssertEqual(DogPatchClient.shared.baseURL, baseURL)
+  }
+  
   func test_init_sets_baseURL() {
     XCTAssertEqual(sut.baseURL, baseURL)
   }
