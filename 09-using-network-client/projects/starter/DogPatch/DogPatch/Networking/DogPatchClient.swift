@@ -33,6 +33,13 @@ class DogPatchClient {
   let baseURL: URL
   let session: URLSessionProtocol
   let responseQueue: DispatchQueue?
+  
+  // 더미 값이 있는 static shared property 정의
+  static let shared = DogPatchClient(
+    baseURL: URL(string:"https://example.com")!,
+    session: URLSession(configuration: .default),
+    responseQueue: nil)
+  
 
   init(baseURL: URL,
        session: URLSessionProtocol,

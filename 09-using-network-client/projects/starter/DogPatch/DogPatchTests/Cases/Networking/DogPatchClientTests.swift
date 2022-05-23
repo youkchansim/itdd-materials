@@ -122,7 +122,9 @@ class DogPatchClientTests: XCTestCase {
     // 2. DogPatchClient.shared.baseURL과 baseURL 비교.
     //      ㄴ [CompileError] Type 'DogPatchClient' has no member 'shared'
     // -> CompileError도 `테스트 실패`에 해당하기 때문에 수정 가능!
+    // 여전히 Fail -> 두 값이 같지 않기 때문.
     XCTAssertEqual(DogPatchClient.shared.baseURL, baseURL)
+    
   }
   
   func test_init_sets_baseURL() {
