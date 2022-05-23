@@ -128,6 +128,15 @@ class DogPatchClientTests: XCTestCase {
   func test_conformsTo_DogPatchService() {
     XCTAssertTrue((sut as AnyObject) is DogPatchService)
   }
+  
+  // [CompileError] Value of type 'DogPatchService' has no member 'getDogs'
+  func test_dogPatchService_declaresGetDogs() {
+    // given
+    let service = sut as DogPatchService
+
+    // then
+    _ = service.getDogs() { _, _ in }
+  }
 
   func test_shared_setsBaseURL() {
     // given
