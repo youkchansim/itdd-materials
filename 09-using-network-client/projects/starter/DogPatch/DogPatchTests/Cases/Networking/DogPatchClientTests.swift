@@ -112,6 +112,7 @@ class DogPatchClientTests: XCTestCase {
     }
   }
   
+  
   // ResponseQueue 확인.
   func test_shared_setsResponseQueue() {
     XCTAssertEqual(DogPatchClient.shared.responseQueue, .main)
