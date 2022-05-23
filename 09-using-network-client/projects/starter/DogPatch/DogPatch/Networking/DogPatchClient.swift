@@ -28,6 +28,10 @@
 
 import Foundation
 
+protocol DogPatchService {
+
+}
+
 class DogPatchClient {
   
   let baseURL: URL
