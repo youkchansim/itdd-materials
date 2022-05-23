@@ -43,11 +43,8 @@ class ListingsViewController: UIViewController {
   }
   
   // MARK: - Instance Properties
-  // 나중에 mock object로 교체할 수 있도록 var로 선언
-  var networkClient =
-      DogPatchClient(baseURL: URL(string: "http://example.com")!,
-                     session: URLSession.shared,
-                     responseQueue: nil)
+  // 나중에 mock object로 교체할 수 있도록 var로 선언 -> 그냥 코드상 바꾸는 거라면 의미가 있는건가
+  var networkClient = DogPatchClient.shared
   
   var viewModels: [DogViewModel] = []
   
