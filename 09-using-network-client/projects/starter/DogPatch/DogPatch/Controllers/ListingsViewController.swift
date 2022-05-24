@@ -70,7 +70,9 @@ class ListingsViewController: UIViewController {
   
   // MARK: - Refresh
   @objc func refreshData() {
-    // TODO: - Write this
+    dataTask = networkClient.getDogs() { dogs, error in
+      
+    }
   }
 }
 
