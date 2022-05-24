@@ -185,6 +185,21 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertTrue(sut.dataTask === mockNetworkClient.getDogsDataTask)
   }
   
+  // 네트워크 진행 중에 '밑으로 당기기'로 네트워크를 중복 요청할 수 있음
+  // refreshData가 빠르게 연속적으로 호출되더라도 getDogs를 한 번만 호출 할 수 있도록 테스트
+  func test_refreshData_ifAlreadyRefreshing_doesntCallAgain() {
+    // given
+    let mockNetworkClient = MockDogPatchService()
+    sut.networkClient = mockNetworkClient
+    
+    // when
+    sut.refreshData()
+    sut.refreshData()
+    
+    // then
+    XCTAssertEqual(mockNetworkClient.getDogsCallCount, 1)
+  }
+  
   // MARK: - UITableViewDataSource Tests
   func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
     // given
