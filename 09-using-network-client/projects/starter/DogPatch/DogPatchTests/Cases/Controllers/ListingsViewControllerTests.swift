@@ -37,6 +37,8 @@ class ListingsViewControllerTests: XCTestCase {
   
   // MARK: - Instance Properties
   var sut: ListingsViewController!
+  var mockNetworkClient: MockDogPatchService!
+  
   var partialMock: PartialMockListingsViewController {
     return sut as! PartialMockListingsViewController
   }
@@ -53,8 +55,10 @@ class ListingsViewControllerTests: XCTestCase {
     sut.loadViewIfNeeded()
   }
   
+  // 테스트 실행이 완료된 후 mockNetworkClient에 nil 설정.
   override func tearDown() {
     sut = nil
+    mockNetworkClient = nil
     super.tearDown()
   }
   
@@ -95,6 +99,11 @@ class ListingsViewControllerTests: XCTestCase {
         name: "name_\(i)")
       return dog
     }
+  }
+  
+  func givenMockNetworkClient() {
+    mockNetworkClient = MockDogPatchService()
+    sut.networkClient = mockNetworkClient
   }
   
   // MARK: - When
@@ -173,8 +182,7 @@ class ListingsViewControllerTests: XCTestCase {
   // 뷰 컨트롤러가 반환된 데이터 작업을 유지하는지 테스트.
   func test_refreshData_setsRequest() {
     // given
-    let mockNetworkClient = MockDogPatchService()
-    sut.networkClient = mockNetworkClient
+    givenMockNetworkClient()
     
     // when
     // 1. sut.refreshData()를 호출한 후
@@ -189,8 +197,7 @@ class ListingsViewControllerTests: XCTestCase {
   // refreshData가 빠르게 연속적으로 호출되더라도 getDogs를 한 번만 호출 할 수 있도록 테스트
   func test_refreshData_ifAlreadyRefreshing_doesntCallAgain() {
     // given
-    let mockNetworkClient = MockDogPatchService()
-    sut.networkClient = mockNetworkClient
+    givenMockNetworkClient()
     
     // when
     sut.refreshData()
