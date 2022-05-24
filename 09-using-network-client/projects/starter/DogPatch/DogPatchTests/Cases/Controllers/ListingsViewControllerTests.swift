@@ -171,10 +171,19 @@ class ListingsViewControllerTests: XCTestCase {
   }
   
   // 뷰 컨트롤러가 반환된 데이터 작업을 유지하는지 테스트.
+  // [CompileError] Value of type 'ListingsViewController' has no member 'dataTask
   func test_refreshData_setsRequest() {
     // given
     let mockNetworkClient = MockDogPatchService()
     sut.networkClient = mockNetworkClient
+    
+    // when
+    // 1. sut.refreshData()를 호출한 후
+    sut.refreshData()
+
+    // then
+    // 2. sut.dataTask가 mockNetworkClient.getDogsDataTask로 설정되어 있는지 확인
+    XCTAssertTrue(sut.dataTask === mockNetworkClient.getDogsDataTask)
   }
   
   // MARK: - UITableViewDataSource Tests
