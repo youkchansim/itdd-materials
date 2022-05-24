@@ -47,6 +47,7 @@ class ListingsViewController: UIViewController {
   var networkClient: DogPatchService = DogPatchClient.shared
   
   var viewModels: [DogViewModel] = []
+  var dataTask: URLSessionTaskProtocol?
   
   // MARK: - View Life Cycle
   override func viewDidLoad() {
