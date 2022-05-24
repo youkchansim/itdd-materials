@@ -42,8 +42,7 @@ class ListingsViewControllerTests: XCTestCase {
   }
   
   // sut.networkClient와 DogPatchClient.shared 비교
-  // [CompileError] Value of type 'ListingsViewController' has no member 'networkClient'
-  // 여전히 실패 XCTAssertTrue failed
+  // [CompileError] Argument type 'DogPatchService' expected to be an instance of a class or class-constrained type
   func test_networkClient_setToDogPatchClient() {
     XCTAssertTrue(sut.networkClient === DogPatchClient.shared)
   }
@@ -173,7 +172,6 @@ class ListingsViewControllerTests: XCTestCase {
   }
   
   // 뷰 컨트롤러가 반환된 데이터 작업을 유지하는지 테스트.
-  // [CompileError] Cannot assign value of type 'MockDogPatchService' to type 'DogPatchClient'
   func test_refreshData_setsRequest() {
     // given
     let mockNetworkClient = MockDogPatchService()
