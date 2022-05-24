@@ -172,6 +172,14 @@ class ListingsViewControllerTests: XCTestCase {
     waitForExpectations(timeout: 0.0)
   }
   
+  // 뷰 컨트롤러가 반환된 데이터 작업을 유지하는지 테스트.
+  // [CompileError] Cannot assign value of type 'MockDogPatchService' to type 'DogPatchClient'
+  func test_refreshData_setsRequest() {
+    // given
+    let mockNetworkClient = MockDogPatchService()
+    sut.networkClient = mockNetworkClient
+  }
+  
   // MARK: - UITableViewDataSource Tests
   func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
     // given
