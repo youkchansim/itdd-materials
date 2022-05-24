@@ -42,9 +42,8 @@ class ListingsViewControllerTests: XCTestCase {
   }
   
   // sut.networkClient와 DogPatchClient.shared 비교
-  // [CompileError] Argument type 'DogPatchService' expected to be an instance of a class or class-constrained type
   func test_networkClient_setToDogPatchClient() {
-    XCTAssertTrue(sut.networkClient === DogPatchClient.shared)
+    XCTAssertTrue((sut.networkClient as? DogPatchClient) === DogPatchClient.shared)
   }
   
   // MARK: - Test Lifecycle
