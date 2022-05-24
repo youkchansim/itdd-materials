@@ -207,6 +207,9 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertEqual(mockNetworkClient.getDogsCallCount, 1)
   }
   
+  // test_refreshData_completionNilsDataTask와 test_refreshData_givenDogsResponse_setsViewModels는
+  // 언듯보기에는 비슷해보여서 리팩토링이 가능할 것 같지만, 막상 하고 나면 읽기 더 어려워짐.
+  // 잘 모르겠으면 일단 해봐~! 롤백하면 그만이야 🤗
   func test_refreshData_completionNilsDataTask() {
     // given
     givenMockNetworkClient()
