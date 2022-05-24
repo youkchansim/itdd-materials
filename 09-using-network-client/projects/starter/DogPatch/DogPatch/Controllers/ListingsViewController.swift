@@ -72,8 +72,8 @@ class ListingsViewController: UIViewController {
   @objc func refreshData() {
     guard dataTask == nil else { return }
     
-    dataTask = networkClient.getDogs() { dogs, error in
-      
+    dataTask = networkClient.getDogs() { [weak self] dogs, error in
+      self?.dataTask = nil
     }
   }
 }

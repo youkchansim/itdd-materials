@@ -207,7 +207,6 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertEqual(mockNetworkClient.getDogsCallCount, 1)
   }
   
-  // XCTAssertNil failed: "DogPatchTests.MockURLSessionTask"
   func test_refreshData_completionNilsDataTask() {
     // given
     givenMockNetworkClient()
