@@ -207,6 +207,23 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertEqual(mockNetworkClient.getDogsCallCount, 1)
   }
   
+  // XCTAssertNil failed: "DogPatchTests.MockURLSessionTask"
+  func test_refreshData_completionNilsDataTask() {
+    // given
+    givenMockNetworkClient()
+    let dogs = givenDogs()
+    
+    // when
+    // 1. sut.refreshData() -> dataTask설정
+    // 2. mockNetworkCient의 getDogsCompletion에 dogs전달.
+    //    ㄴ ListingsViewController에서 클로져 실행 -> dataTask를 nil로 설정
+    sut.refreshData()
+    mockNetworkClient.getDogsCompletion(dogs, nil)
+    
+    // then
+    XCTAssertNil(sut.dataTask)
+  }
+  
   // MARK: - UITableViewDataSource Tests
   func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
     // given
