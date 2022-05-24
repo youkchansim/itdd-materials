@@ -223,6 +223,21 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertNil(sut.dataTask)
   }
   
+  // XCTAssertEqual failed: ("[]") is not equal to ("[DogPatch.DogViewModel, DogPatch.DogViewModel, DogPatch.DogViewModel]")
+  func test_refreshData_givenDogsResponse_setsViewModels() {
+    // given
+    givenMockNetworkClient()
+    let dogs = givenDogs()
+    let viewModels = dogs.map { DogViewModel(dog: $0) }
+    
+    // when
+    sut.refreshData()
+    mockNetworkClient.getDogsCompletion(dogs, nil)
+    
+    // then
+    XCTAssertEqual(sut.viewModels, viewModels)
+  }
+  
   // MARK: - UITableViewDataSource Tests
   func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
     // given
