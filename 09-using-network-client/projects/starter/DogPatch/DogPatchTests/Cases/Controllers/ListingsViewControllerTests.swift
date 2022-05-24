@@ -223,7 +223,6 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertNil(sut.dataTask)
   }
   
-  // XCTAssertEqual failed: ("[]") is not equal to ("[DogPatch.DogViewModel, DogPatch.DogViewModel, DogPatch.DogViewModel]")
   func test_refreshData_givenDogsResponse_setsViewModels() {
     // given
     givenMockNetworkClient()
