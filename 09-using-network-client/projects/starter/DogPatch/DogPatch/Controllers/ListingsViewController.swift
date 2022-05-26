@@ -77,6 +77,7 @@ class ListingsViewController: UIViewController {
       self?.dataTask = nil
       self?.tableView.reloadData()
       self?.viewModels = dogs?.map { DogViewModel(dog: $0) } ?? []
+      self?.tableView.refreshControl?.endRefreshing()
     }
   }
 }
