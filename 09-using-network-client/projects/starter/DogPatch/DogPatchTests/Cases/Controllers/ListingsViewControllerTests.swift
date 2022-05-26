@@ -280,6 +280,20 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertTrue(sut.tableView.refreshControl!.isRefreshing)
   }
   
+  // completion closure 가 종료되면 refresh 종료해야함
+  func test_refreshData_givenDogsResponse_endsRefreshing() {
+    // given
+    givenMockNetworkClient()
+    let dogs = givenDogs()
+    
+    // when
+    sut.refreshData()
+    mockNetworkClient.getDogsCompletion(dogs, nil)
+    
+    // then
+    XCTAssertFalse(sut.tableView.refreshControl!.isRefreshing)
+  }
+  
   // MARK: - UITableViewDataSource Tests
   func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
     // given
