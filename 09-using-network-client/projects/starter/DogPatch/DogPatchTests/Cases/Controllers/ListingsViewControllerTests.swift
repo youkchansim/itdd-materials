@@ -240,6 +240,33 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertEqual(sut.viewModels, viewModels)
   }
   
+  func test_refreshData_givenDogsResponse_reloadsTableView() {
+    // given
+    givenMockNetworkClient()
+    let dogs = givenDogs()
+    
+    // 1. reloadData를 정의하기 위해 MockTableView를 만든다.
+    class MockTableView: UITableView {
+      var calledReloadData = false
+      override func reloadData() {
+        calledReloadData = true
+      }
+    }
+    // 2. mockTableView를 위한 새 인스턴스를 만들고 이것을 sut.tableView로 설정한다.
+    let mockTableView = MockTableView()
+    sut.tableView = mockTableView
+    
+    // when
+    // 3. refreshData()를 호출하고 getDogsCompletion을 실행한다.
+    sut.refreshData()
+    mockNetworkClient.getDogsCompletion(dogs, nil)
+    
+    // then
+    
+    // 4. mockTableView.calledReloadData가 참인지 확인한다.
+    XCTAssertTrue(mockTableView.calledReloadData)
+  }
+  
   // MARK: - UITableViewDataSource Tests
   func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
     // given
