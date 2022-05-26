@@ -74,6 +74,7 @@ class ListingsViewController: UIViewController {
     
     dataTask = networkClient.getDogs() { [weak self] dogs, error in
       self?.dataTask = nil
+      self?.tableView.reloadData()
       self?.viewModels = dogs?.map { DogViewModel(dog: $0) } ?? []
     }
   }
