@@ -267,6 +267,19 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertTrue(mockTableView.calledReloadData)
   }
   
+  // 실제 실행을 해보면 refresh indicator가 삭제가 안되는 상황 발생
+  // 이를 해결하기 위한 과정
+  func test_refreshData_beginsRefreshing() {
+    // given
+    givenMockNetworkClient()
+    
+    // when
+    sut.refreshData()
+    
+    // then
+    XCTAssertTrue(sut.tableView.refreshControl!.isRefreshing)
+  }
+  
   // MARK: - UITableViewDataSource Tests
   func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
     // given
