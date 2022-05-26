@@ -71,6 +71,7 @@ class ListingsViewController: UIViewController {
   // MARK: - Refresh
   @objc func refreshData() {
     guard dataTask == nil else { return }
+    tableView.refreshControl?.beginRefreshing()
     
     dataTask = networkClient.getDogs() { [weak self] dogs, error in
       self?.dataTask = nil
