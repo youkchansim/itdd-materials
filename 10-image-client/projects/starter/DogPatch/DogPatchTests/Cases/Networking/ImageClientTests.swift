@@ -39,6 +39,9 @@ class ImageClientTests: XCTestCase {
     return sut as ImageService
   }
   var url: URL!
+  var receivedTask: MockURLSessionTask?
+  var receivedError: Error?
+  var receivedImage: UIImage?
   
   // MARK: - Test Lifecycle
   // 3
@@ -54,6 +57,9 @@ class ImageClientTests: XCTestCase {
     mockSession = nil
     sut = nil
     url = nil
+    receivedTask = nil
+    receivedError = nil
+    receivedImage = nil
     super.tearDown()
   }
   
@@ -116,17 +122,44 @@ class ImageClientTests: XCTestCase {
   
   func test_downloadImage_createsExpectedTask() {
     // when
-    let dataTask = sut.downloadImage(fromURL: url) { _, _ in } as? MockURLSessionTask
+    whenDownloadImage()
     
     // then
-    XCTAssertEqual(dataTask?.url, url)
+    XCTAssertEqual(receivedTask?.url, url)
   }
   
   func test_downloadImage_callsResumeOnTask() {
     // when
-    let dataTask = sut.downloadImage(fromURL: url) { _, _ in } as? MockURLSessionTask
+    whenDownloadImage()
     
     // then
-    XCTAssertTrue(dataTask?.calledResume ?? false)
+    // receivedTask가 nil일 경우를 대비하여 기본값을 false로 한다.
+    XCTAssertTrue(receivedTask?.calledResume ?? false)
+  }
+  
+  // MARK: - When
+  // 1
+  func whenDownloadImage(image: UIImage? = nil, error: Error? = nil) {
+    
+    // 2
+    receivedTask = sut.downloadImage(
+      fromURL: url) { image, error in
+        
+        // 3
+        self.receivedImage = image
+        self.receivedError = error
+      } as? MockURLSessionTask
+    
+    // 4
+    guard let receivedTask = receivedTask else {
+      return
+    }
+    if let image = image {
+      receivedTask.completionHandler(
+        image.pngData(), nil, nil)
+      
+    } else if let error = error {
+      receivedTask.completionHandler(nil, nil, error)
+    }
   }
 }
