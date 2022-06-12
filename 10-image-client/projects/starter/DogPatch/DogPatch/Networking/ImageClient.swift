@@ -31,9 +31,13 @@ import UIKit
 
 protocol ImageService {
   
+  func downloadImage(
+    fromURL url: URL,
+    completion: @escaping (UIImage?, Error?) -> Void)
+    -> URLSessionTaskProtocol
 }
 
-class ImageClient: ImageService {
+class ImageClient {
   
   // MARK: - Static Properties
   // 2
@@ -59,5 +63,15 @@ class ImageClient: ImageService {
     
     self.responseQueue = responseQueue
     self.session = session
+  }
+}
+
+extension ImageClient: ImageService {
+  func downloadImage(
+    fromURL url: URL,
+    completion: @escaping (UIImage?, Error?) -> Void)
+  -> URLSessionTaskProtocol {
+    let url = URL(string: "https://example.com")!
+    return session.makeDataTask(with: url, completionHandler: { _, _, _ in })
   }
 }
