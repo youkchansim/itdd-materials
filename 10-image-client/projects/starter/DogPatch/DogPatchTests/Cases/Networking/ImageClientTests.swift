@@ -150,6 +150,20 @@ class ImageClientTests: XCTestCase {
                    receivedImage?.pngData())
   }
   
+  // Handling the error path
+  func test_downloadImage_givenError_callsCompletionWithError() {
+    // given
+    let expectedError = NSError(domain: "com.example",
+                                code: 42,
+                                userInfo: nil)
+
+    // when
+    whenDownloadImage(error: expectedError)
+
+    // then
+    XCTAssertEqual(expectedError, receivedError as NSError?)
+  }
+  
   // MARK: - When
   // 1
   func whenDownloadImage(image: UIImage? = nil, error: Error? = nil) {
