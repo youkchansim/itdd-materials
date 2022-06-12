@@ -121,4 +121,12 @@ class ImageClientTests: XCTestCase {
     // then
     XCTAssertEqual(dataTask?.url, url)
   }
+  
+  func test_downloadImage_callsResumeOnTask() {
+    // when
+    let dataTask = sut.downloadImage(fromURL: url) { _, _ in } as? MockURLSessionTask
+    
+    // then
+    XCTAssertTrue(dataTask?.calledResume ?? false)
+  }
 }
