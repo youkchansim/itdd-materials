@@ -42,6 +42,7 @@ class ImageClientTests: XCTestCase {
   var receivedTask: MockURLSessionTask?
   var receivedError: Error?
   var receivedImage: UIImage?
+  var expectedImage: UIImage!
   
   // MARK: - Test Lifecycle
   // 3
@@ -60,6 +61,7 @@ class ImageClientTests: XCTestCase {
     receivedTask = nil
     receivedError = nil
     receivedImage = nil
+    expectedImage = nil
     super.tearDown()
   }
   
@@ -140,7 +142,7 @@ class ImageClientTests: XCTestCase {
   // Handling the happy path
   func test_downloadImage_givenImage_callsCompletionWithImage() {
     // given
-    let expectedImage = UIImage(named: "happy_dog")!
+    givenExpectedImage()
     
     // when
     whenDownloadImage(image: expectedImage)
@@ -173,7 +175,7 @@ class ImageClientTests: XCTestCase {
     mockSession.givenDispatchQueue()
     sut = ImageClient(responseQueue: .main,
                       session: mockSession)
-    let expectedImage = UIImage(named: "happy_dog")!
+    givenExpectedImage()
     var receivedThread: Thread!
     let expectation = self.expectation(
       description: "Completion wasn't called")
@@ -215,5 +217,10 @@ class ImageClientTests: XCTestCase {
     } else if let error = error {
       receivedTask.completionHandler(nil, nil, error)
     }
+  }
+  
+  // MARK: - Given
+  func givenExpectedImage() {
+    expectedImage = UIImage(named: "happy_dog")!
   }
 }
