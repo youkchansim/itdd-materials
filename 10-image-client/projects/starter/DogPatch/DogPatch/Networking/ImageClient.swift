@@ -80,6 +80,8 @@ extension ImageClient: ImageService {
       if let data = data,
          let image = UIImage(data: data) {
         completion(image, nil)
+      } else {
+        completion(nil, error)
       }
     }
     
