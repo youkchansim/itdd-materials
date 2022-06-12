@@ -138,7 +138,6 @@ class ImageClientTests: XCTestCase {
   }
   
   // Handling the happy path
-  // downloadImage에서 complietion을 호출 안해서 테스트 실패
   func test_downloadImage_givenImage_callsCompletionWithImage() {
     // given
     let expectedImage = UIImage(named: "happy_dog")!

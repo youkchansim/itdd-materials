@@ -77,7 +77,10 @@ extension ImageClient: ImageService {
   -> URLSessionTaskProtocol {
     let task = session.makeDataTask(with: url) {
       data, response, error in
-              
+      if let data = data,
+         let image = UIImage(data: data) {
+        completion(image, nil)
+      }
     }
     
     task.resume()
