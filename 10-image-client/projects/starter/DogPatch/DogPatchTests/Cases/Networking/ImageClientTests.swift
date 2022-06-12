@@ -98,4 +98,17 @@ class ImageClientTests: XCTestCase {
     // then
     _ = service.downloadImage(fromURL: url) { _, _ in }
   }
+  
+  func test_imageService_declaresSetImageOnImageView() {
+    // given
+    let service = sut as ImageService
+    let imageView = UIImageView()
+    let url = URL(string: "https://example.com/image")!
+    let placeholder = UIImage(named: "image_placeholder")!
+    
+    // then
+    service.setImage(on: imageView,
+                     fromURL: url,
+                     withPlaceholder: placeholder)
+  }
 }
