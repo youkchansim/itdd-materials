@@ -78,4 +78,12 @@ class ImageClientTests: XCTestCase {
   func test_init_setsSession() {
     XCTAssertTrue(sut.session === mockSession)
   }
+  
+  /*
+   As always, you first need to write a failing test. Add the following to ImageClientTests, right after the last test method
+   */
+  // MARK: - ImageService - Tests
+  func test_conformsTo_ImageService() {
+    XCTAssertTrue((sut as AnyObject) is ImageService)
+  }
 }
