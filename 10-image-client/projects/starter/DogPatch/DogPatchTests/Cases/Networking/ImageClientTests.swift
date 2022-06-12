@@ -86,4 +86,16 @@ class ImageClientTests: XCTestCase {
   func test_conformsTo_ImageService() {
     XCTAssertTrue((sut as AnyObject) is ImageService)
   }
+  
+  /*
+   아래의 downloadImage를 구현하지 않았기 때문에 컴파일 오류 발생
+   */
+  func test_imageService_declaresDownloadImage() {
+    // given
+    let url = URL(string: "https://example.com/image")!
+    let service = sut as ImageService
+    
+    // then
+    _ = service.downloadImage(fromURL: url) { _, _ in }
+  }
 }
