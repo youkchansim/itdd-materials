@@ -137,6 +137,20 @@ class ImageClientTests: XCTestCase {
     XCTAssertTrue(receivedTask?.calledResume ?? false)
   }
   
+  // Handling the happy path
+  // downloadImage에서 complietion을 호출 안해서 테스트 실패
+  func test_downloadImage_givenImage_callsCompletionWithImage() {
+    // given
+    let expectedImage = UIImage(named: "happy_dog")!
+    
+    // when
+    whenDownloadImage(image: expectedImage)
+    
+    // then
+    XCTAssertEqual(expectedImage.pngData(),
+                   receivedImage?.pngData())
+  }
+  
   // MARK: - When
   // 1
   func whenDownloadImage(image: UIImage? = nil, error: Error? = nil) {
