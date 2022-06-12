@@ -82,20 +82,9 @@ extension ImageClient: ImageService {
       
       if let data = data, let image = UIImage(data: data) {
         // 2
-        if let responseQueue = self.responseQueue {
-          responseQueue.async { completion(image, nil) }
-          
-          // 3
-        } else {
-          completion(image, nil)
-        }
+        self.dispatch(image: image, completion: completion)
       } else {
-        if let responseQueue = self.responseQueue {
-          responseQueue.async { completion(nil, error) }
-          
-        } else {
-          completion(nil, error)
-        }
+        self.dispatch(error: error, completion: completion)
       }
     }
     
@@ -109,4 +98,16 @@ extension ImageClient: ImageService {
                 withPlaceholder placeholder: UIImage?) {
     
   }
+  
+  private func dispatch(
+    image: UIImage? = nil,
+    error: Error? = nil,
+    completion: @escaping (UIImage?, Error?) -> Void) {
+      
+      guard let responseQueue = responseQueue else {
+        completion(image, error)
+        return
+      }
+      responseQueue.async { completion(image, error) }
+    }
 }
