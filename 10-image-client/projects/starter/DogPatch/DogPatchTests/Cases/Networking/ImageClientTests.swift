@@ -114,9 +114,6 @@ class ImageClientTests: XCTestCase {
                      withPlaceholder: placeholder)
   }
   
-  /*
-   Build and run this test and you’ll see it fails. This is because you aren’t using the passed-in url when you call makeDataTask on the ImageClient.
-   */
   func test_downloadImage_createsExpectedTask() {
     // when
     let dataTask = sut.downloadImage(fromURL: url) { _, _ in } as? MockURLSessionTask

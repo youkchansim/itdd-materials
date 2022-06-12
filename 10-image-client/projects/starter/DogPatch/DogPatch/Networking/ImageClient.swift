@@ -75,8 +75,11 @@ extension ImageClient: ImageService {
     fromURL url: URL,
     completion: @escaping (UIImage?, Error?) -> Void)
   -> URLSessionTaskProtocol {
-    let url = URL(string: "https://example.com")!
-    return session.makeDataTask(with: url, completionHandler: { _, _, _ in })
+    let task = session.makeDataTask(with: url) {
+      data, response, error in
+              
+    }
+    return task
   }
   
   func setImage(on imageView: UIImageView,
