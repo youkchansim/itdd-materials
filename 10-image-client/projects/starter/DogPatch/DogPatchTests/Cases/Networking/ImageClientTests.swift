@@ -193,6 +193,32 @@ class ImageClientTests: XCTestCase {
     XCTAssertTrue(receivedThread.isMainThread)
   }
   
+  // Dispatching an error
+  func test_downloadImage_givenError_dispatchesToResponseQueue() {
+    // given
+    mockSession.givenDispatchQueue()
+    sut = ImageClient(responseQueue: .main,
+                      session: mockSession)
+    
+    let error = NSError(domain: "com.example",
+                        code: 42,
+                        userInfo: nil)
+    var receivedThread: Thread!
+    let expectation = self.expectation(
+      description: "Completion wasn't called")
+    
+    // when
+    let dataTask = sut.downloadImage(fromURL: url) { _, _ in
+      receivedThread = Thread.current
+      expectation.fulfill()
+    } as! MockURLSessionTask
+    dataTask.completionHandler(nil, nil, error)
+    
+    // then
+    waitForExpectations(timeout: 0.2)
+    XCTAssertTrue(receivedThread.isMainThread)
+  }
+  
   // MARK: - When
   // 1
   func whenDownloadImage(image: UIImage? = nil, error: Error? = nil) {
