@@ -35,6 +35,10 @@ protocol ImageService {
     fromURL url: URL,
     completion: @escaping (UIImage?, Error?) -> Void)
     -> URLSessionTaskProtocol
+  
+  func setImage(on imageView: UIImageView,
+                fromURL url: URL,
+                withPlaceholder placeholder: UIImage?)
 }
 
 class ImageClient {
@@ -73,5 +77,11 @@ extension ImageClient: ImageService {
   -> URLSessionTaskProtocol {
     let url = URL(string: "https://example.com")!
     return session.makeDataTask(with: url, completionHandler: { _, _, _ in })
+  }
+  
+  func setImage(on imageView: UIImageView,
+                fromURL url: URL,
+                withPlaceholder placeholder: UIImage?) {
+    
   }
 }
