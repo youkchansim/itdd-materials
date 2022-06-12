@@ -76,10 +76,19 @@ extension ImageClient: ImageService {
     completion: @escaping (UIImage?, Error?) -> Void)
   -> URLSessionTaskProtocol {
     let task = session.makeDataTask(with: url) {
-      data, response, error in
-      if let data = data,
-         let image = UIImage(data: data) {
-        completion(image, nil)
+      // 1
+      [weak self] data, response, error in
+      guard let self = self else { return }
+      
+      if let data = data, let image = UIImage(data: data) {
+        // 2
+        if let responseQueue = self.responseQueue {
+          responseQueue.async { completion(image, nil) }
+          
+          // 3
+        } else {
+          completion(image, nil)
+        }
       } else {
         completion(nil, error)
       }

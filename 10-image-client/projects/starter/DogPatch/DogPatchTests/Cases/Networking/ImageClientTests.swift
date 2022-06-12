@@ -165,6 +165,9 @@ class ImageClientTests: XCTestCase {
   }
   
   // 이미지가 성공적으로 다운로드하면 responseQueue로 디스패치 해야한다.
+  /*
+   현재 실행되는 코드가 어디 대기열인지 알 수 없지만 현재 스레드가 무엇인지는 알 수 있다. 그래서 스래드로 확인을 한다.
+   */
   func test_downloadImage_givenImage_dispatchesToResponseQueue() {
     // given
     mockSession.givenDispatchQueue()
