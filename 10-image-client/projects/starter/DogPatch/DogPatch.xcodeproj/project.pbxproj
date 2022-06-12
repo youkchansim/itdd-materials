@@ -50,6 +50,7 @@
 		42D837B022B6C0830036C5DD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D837AF22B6C0830036C5DD /* Colors.xcassets */; };
 		42D837B322B6CE2D0036C5DD /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837B222B6CE2D0036C5DD /* Dog.swift */; };
 		42D837BE22B6DAD50036C5DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837BD22B6DAD50036C5DD /* User.swift */; };
+		5E6D6D0D28558C5400C73072 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D6D0C28558C5400C73072 /* ImageClient.swift */; };
 		9581B4AC2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */; };
 		9581B4AD2316F32D00A78286 /* StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */; };
 		9581B4B12316F35D00A78286 /* UIView+NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */; };
@@ -118,6 +119,7 @@
 		42D837AF22B6C0830036C5DD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		42D837B222B6CE2D0036C5DD /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		42D837BD22B6DAD50036C5DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5E6D6D0C28558C5400C73072 /* ImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
 		9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryboardCreatable.swift"; sourceTree = "<group>"; };
 		9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardCreatable.swift; sourceTree = "<group>"; };
 		9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibCreatable.swift"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			children = (
 				428CB76B2716C90D0095DB92 /* DogPatchClient.swift */,
 				428CB7652716C0A60095DB92 /* URLSessionProtocol.swift */,
+				5E6D6D0C28558C5400C73072 /* ImageClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				9581B4B52316F3D200A78286 /* LogoNavigationItem.swift in Sources */,
 				9581B4AC2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift in Sources */,
 				4270357322B6FA98001080B1 /* ListingCell.swift in Sources */,
+				5E6D6D0D28558C5400C73072 /* ImageClient.swift in Sources */,
 				42D837BE22B6DAD50036C5DD /* User.swift in Sources */,
 				42335BEF22BD166800E21A72 /* UIView+ApplyShadow.swift in Sources */,
 				9581B4B12316F35D00A78286 /* UIView+NibCreatable.swift in Sources */,
