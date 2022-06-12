@@ -68,15 +68,8 @@ class ImageClient {
     self.responseQueue = responseQueue
     self.session = session
   }
-  
-  deinit {
-    print("###")
-  }
 }
 
-/*
- [퀴즈] [weak self]를 넣은 이유는?
- */
 extension ImageClient: ImageService {
   func downloadImage(
     fromURL url: URL,
@@ -84,7 +77,8 @@ extension ImageClient: ImageService {
   -> URLSessionTaskProtocol {
     let task = session.makeDataTask(with: url) {
       // 1
-      data, response, error in
+      [weak self] data, response, error in
+      guard let self = self else { return }
       
       if let data = data, let image = UIImage(data: data) {
         // 2
@@ -96,7 +90,12 @@ extension ImageClient: ImageService {
           completion(image, nil)
         }
       } else {
-        completion(nil, error)
+        if let responseQueue = self.responseQueue {
+          responseQueue.async { completion(nil, error) }
+          
+        } else {
+          completion(nil, error)
+        }
       }
     }
     
