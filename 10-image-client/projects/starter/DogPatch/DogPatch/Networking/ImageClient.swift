@@ -79,6 +79,9 @@ extension ImageClient: ImageService {
       data, response, error in
               
     }
+    
+    task.resume()
+    
     return task
   }
   
