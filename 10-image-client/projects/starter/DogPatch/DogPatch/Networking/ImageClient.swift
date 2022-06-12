@@ -33,7 +33,7 @@ protocol ImageService {
   
 }
 
-class ImageClient {
+class ImageClient: ImageService {
   
   // MARK: - Static Properties
   // 2
