@@ -164,6 +164,30 @@ class ImageClientTests: XCTestCase {
     XCTAssertEqual(expectedError, receivedError as NSError?)
   }
   
+  // 이미지가 성공적으로 다운로드하면 responseQueue로 디스패치 해야한다.
+  func test_downloadImage_givenImage_dispatchesToResponseQueue() {
+    // given
+    mockSession.givenDispatchQueue()
+    sut = ImageClient(responseQueue: .main,
+                      session: mockSession)
+    let expectedImage = UIImage(named: "happy_dog")!
+    var receivedThread: Thread!
+    let expectation = self.expectation(
+      description: "Completion wasn't called")
+    
+    // when
+    let dataTask = sut.downloadImage(fromURL: url) { _, _ in
+      receivedThread = Thread.current
+      expectation.fulfill()
+      
+    } as! MockURLSessionTask
+    dataTask.completionHandler(expectedImage.pngData(), nil, nil)
+    
+    // then
+    waitForExpectations(timeout: 0.2)
+    XCTAssertTrue(receivedThread.isMainThread)
+  }
+  
   // MARK: - When
   // 1
   func whenDownloadImage(image: UIImage? = nil, error: Error? = nil) {
