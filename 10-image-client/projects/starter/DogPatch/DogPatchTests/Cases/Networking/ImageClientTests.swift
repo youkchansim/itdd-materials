@@ -35,6 +35,10 @@ class ImageClientTests: XCTestCase {
   // 2
   var mockSession: MockURLSession!
   var sut: ImageClient!
+  var service: ImageService {
+    return sut as ImageService
+  }
+  var url: URL!
   
   // MARK: - Test Lifecycle
   // 3
@@ -43,11 +47,13 @@ class ImageClientTests: XCTestCase {
     mockSession = MockURLSession()
     sut = ImageClient(responseQueue: nil,
                       session: mockSession)
+    url = URL(string: "https://example.com/image")!
   }
   
   override func tearDown() {
     mockSession = nil
     sut = nil
+    url = nil
     super.tearDown()
   }
   
@@ -92,8 +98,6 @@ class ImageClientTests: XCTestCase {
    */
   func test_imageService_declaresDownloadImage() {
     // given
-    let url = URL(string: "https://example.com/image")!
-    let service = sut as ImageService
     
     // then
     _ = service.downloadImage(fromURL: url) { _, _ in }
@@ -101,9 +105,7 @@ class ImageClientTests: XCTestCase {
   
   func test_imageService_declaresSetImageOnImageView() {
     // given
-    let service = sut as ImageService
     let imageView = UIImageView()
-    let url = URL(string: "https://example.com/image")!
     let placeholder = UIImage(named: "image_placeholder")!
     
     // then
