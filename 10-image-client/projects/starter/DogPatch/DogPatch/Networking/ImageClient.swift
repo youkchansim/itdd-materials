@@ -29,6 +29,10 @@
 // 1
 import UIKit
 
+protocol ImageService {
+  
+}
+
 class ImageClient {
   
   // MARK: - Static Properties
