@@ -34,7 +34,7 @@ protocol ImageService {
   func downloadImage(
     fromURL url: URL,
     completion: @escaping (UIImage?, Error?) -> Void)
-    -> URLSessionTaskProtocol
+    -> URLSessionTaskProtocol?
   
   func setImage(on imageView: UIImageView,
                 fromURL url: URL,
@@ -74,7 +74,11 @@ extension ImageClient: ImageService {
   func downloadImage(
     fromURL url: URL,
     completion: @escaping (UIImage?, Error?) -> Void)
-  -> URLSessionTaskProtocol {
+  -> URLSessionTaskProtocol? {
+    if let image = cachedImageForURL[url] {
+      return nil
+    }
+    
     let task = session.makeDataTask(with: url) {
       // 1
       [weak self] data, response, error in
