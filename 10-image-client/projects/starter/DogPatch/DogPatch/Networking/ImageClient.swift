@@ -103,6 +103,7 @@ extension ImageClient: ImageService {
                 fromURL url: URL,
                 withPlaceholder placeholder: UIImage?) {
     cachedTaskForImageView[imageView]?.cancel()
+    imageView.image = placeholder
   }
   
   private func dispatch(
