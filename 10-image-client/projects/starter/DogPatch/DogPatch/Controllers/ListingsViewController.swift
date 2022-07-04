@@ -109,7 +109,7 @@ extension ListingsViewController: UITableViewDataSource {
     viewModel.configure(cell)
     imageClient.setImage(
       on: cell.dogImageView,
-      fromURL: URL(string: "http://example.com")!,
+      fromURL: viewModel.imageURL,
       withPlaceholder: nil)
     return cell
   }
