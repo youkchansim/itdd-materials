@@ -189,6 +189,18 @@ class ImageClientTests: XCTestCase {
     verifyDownloadImageDispatched(error: expectedError)
   }
   
+  func test_downloadImage_givenImage_cachesImage() {
+    // given
+    givenExpectedImage()
+    
+    // when
+    whenDownloadImage(image: expectedImage)
+    
+    // then
+    XCTAssertEqual(sut.cachedImageForURL[url]?.pngData(),
+                   expectedImage.pngData())
+  }
+  
   // MARK: - Then
   func verifyDownloadImageDispatched(image: UIImage? = nil,
                                      error: Error? = nil,
