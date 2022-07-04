@@ -246,6 +246,21 @@ class ImageClientTests: XCTestCase {
     XCTAssertTrue(task.calledCancel)
   }
   
+  func test_setImageOnImageView_setsPlaceholderOnImageView() {
+    // given
+    givenExpectedImage()
+    let imageView = UIImageView()
+
+    // when
+    sut.setImage(on: imageView,
+                 fromURL: url,
+                 withPlaceholder: expectedImage)
+
+    // then
+    XCTAssertEqual(imageView.image?.pngData(),
+                   expectedImage.pngData())
+  }
+  
   // MARK: - Then
   func verifyDownloadImageDispatched(image: UIImage? = nil,
                                      error: Error? = nil,
