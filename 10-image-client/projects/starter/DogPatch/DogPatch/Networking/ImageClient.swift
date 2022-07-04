@@ -107,6 +107,7 @@ extension ImageClient: ImageService {
     
     cachedTaskForImageView[imageView] = downloadImage(fromURL: url) { [weak self] image, error in
       guard let self = self else { return }
+      self.cachedTaskForImageView[imageView] = nil
     }
   }
   
