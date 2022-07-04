@@ -107,6 +107,10 @@ extension ListingsViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: ListingTableViewCell.identifier) as! ListingTableViewCell
     let viewModel = viewModels[indexPath.row]
     viewModel.configure(cell)
+    imageClient.setImage(
+      on: cell.dogImageView,
+      fromURL: URL(string: "http://example.com")!,
+      withPlaceholder: nil)
     return cell
   }
 }
