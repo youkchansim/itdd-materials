@@ -397,6 +397,20 @@ class ListingsViewControllerTests: XCTestCase {
                    viewModel.imageURL)
   }
   
+  func test_tableViewCellForRowAt_callsImageClientWithPlaceholder() {
+    // given
+    givenMockViewModels()
+    let placeholder = UIImage(named: "image_placeholder")!
+    
+    // when
+    whenDequeueFirstListingsCell()
+    
+    // then
+    XCTAssertEqual(
+      mockImageClient.receivedPlaceholder.pngData(),
+      placeholder.pngData())
+  }
+  
   @discardableResult
   func whenDequeueFirstListingsCell()
     -> ListingTableViewCell? {
