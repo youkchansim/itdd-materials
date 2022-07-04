@@ -354,6 +354,10 @@ class ListingsViewControllerTests: XCTestCase {
       XCTAssertTrue(viewModel.configuredCell === cell) // pointer equality
     }
   }
+  
+  func test_imageClient_isImageService() {
+    XCTAssertTrue((sut.imageClient as AnyObject) is ImageService)
+  }
 }
 
 // MARK: - Mocks
