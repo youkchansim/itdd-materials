@@ -44,6 +44,7 @@ class ImageClientTests: XCTestCase {
   var expectedError: NSError!
   var receivedImage: UIImage?
   var expectedImage: UIImage!
+  var imageView: UIImageView!
   
   // MARK: - Test Lifecycle
   // 3
@@ -53,6 +54,7 @@ class ImageClientTests: XCTestCase {
     sut = ImageClient(responseQueue: nil,
                       session: mockSession)
     url = URL(string: "https://example.com/image")!
+    imageView = UIImageView()
   }
   
   override func tearDown() {
@@ -64,6 +66,7 @@ class ImageClientTests: XCTestCase {
     expectedError = nil
     receivedImage = nil
     expectedImage = nil
+    imageView = nil
     super.tearDown()
   }
   
@@ -234,7 +237,6 @@ class ImageClientTests: XCTestCase {
       completionHandler: { _, _, _ in },
       url: url,
       queue: nil)
-    let imageView = UIImageView()
     sut.cachedTaskForImageView[imageView] = task
     
     // when
@@ -249,7 +251,6 @@ class ImageClientTests: XCTestCase {
   func test_setImageOnImageView_setsPlaceholderOnImageView() {
     // given
     givenExpectedImage()
-    let imageView = UIImageView()
 
     // when
     sut.setImage(on: imageView,
