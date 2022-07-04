@@ -201,6 +201,18 @@ class ImageClientTests: XCTestCase {
                    expectedImage.pngData())
   }
   
+  func test_downloadImage_givenCachedImage_returnsNilDataTask() {
+    // given
+    givenExpectedImage()
+    
+    // when
+    whenDownloadImage(image: expectedImage)
+    whenDownloadImage(image: expectedImage)
+    
+    // then
+    XCTAssertNil(receivedTask)
+  }
+  
   // MARK: - Then
   func verifyDownloadImageDispatched(image: UIImage? = nil,
                                      error: Error? = nil,
