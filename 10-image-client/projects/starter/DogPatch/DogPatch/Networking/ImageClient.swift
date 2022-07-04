@@ -82,6 +82,7 @@ extension ImageClient: ImageService {
       
       if let data = data, let image = UIImage(data: data) {
         // 2
+        self.cachedImageForURL[url] = image
         self.dispatch(image: image, completion: completion)
       } else {
         self.dispatch(error: error, completion: completion)
