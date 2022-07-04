@@ -102,7 +102,7 @@ extension ImageClient: ImageService {
   func setImage(on imageView: UIImageView,
                 fromURL url: URL,
                 withPlaceholder placeholder: UIImage?) {
-    
+    cachedTaskForImageView[imageView]?.cancel()
   }
   
   private func dispatch(

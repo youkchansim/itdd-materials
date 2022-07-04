@@ -73,4 +73,9 @@ class MockURLSessionTask: URLSessionTaskProtocol {
   func resume() {
     calledResume = true
   }
+  
+  var calledCancel = false
+  func cancel() {
+    calledCancel = true
+  }
 }

@@ -39,6 +39,7 @@ protocol URLSessionProtocol: AnyObject {
 
 protocol URLSessionTaskProtocol: AnyObject {
   func resume()
+  func cancel()
 }
 
 extension URLSessionTask: URLSessionTaskProtocol { }
