@@ -104,6 +104,10 @@ extension ImageClient: ImageService {
                 withPlaceholder placeholder: UIImage?) {
     cachedTaskForImageView[imageView]?.cancel()
     imageView.image = placeholder
+    
+    cachedTaskForImageView[imageView] = downloadImage(fromURL: url) { [weak self] image, error in
+      guard let self = self else { return }
+    }
   }
   
   private func dispatch(
