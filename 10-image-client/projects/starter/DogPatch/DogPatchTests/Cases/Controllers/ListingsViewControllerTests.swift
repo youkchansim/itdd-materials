@@ -365,6 +365,7 @@ class ListingsViewControllerTests: XCTestCase {
   
   func test_imageClient_setToSharedImageClient() {
     // given
+    sut = ListingsViewController.instanceFromStoryboard()
     let expected = ImageClient.shared
     
     // then
