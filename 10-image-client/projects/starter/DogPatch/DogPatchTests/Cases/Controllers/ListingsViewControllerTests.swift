@@ -42,17 +42,21 @@ class ListingsViewControllerTests: XCTestCase {
   var partialMock: PartialMockListingsViewController {
     return sut as! PartialMockListingsViewController
   }
+  var mockImageClient: MockImageService!
   
   // MARK: - Test Lifecycle
   override func setUp() {
     super.setUp()
     sut = ListingsViewController.instanceFromStoryboard()
     sut.loadViewIfNeeded()
+    mockImageClient = MockImageService()
+    sut.imageClient = mockImageClient
   }
   
   override func tearDown() {
     mockNetworkClient = nil
     sut = nil
+    mockImageClient = nil
     super.tearDown()
   }
   
