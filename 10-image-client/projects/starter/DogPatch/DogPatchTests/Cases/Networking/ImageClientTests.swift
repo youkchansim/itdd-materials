@@ -262,6 +262,17 @@ class ImageClientTests: XCTestCase {
                    expectedImage.pngData())
   }
   
+  func test_setImageOnImageView_cachesTask() {
+    // when
+    sut.setImage(on: imageView,
+                 fromURL: url,
+                 withPlaceholder: nil)
+    
+    // then
+    receivedTask = sut.cachedTaskForImageView[imageView] as? MockURLSessionTask
+    XCTAssertEqual(receivedTask?.url, url)
+  }
+  
   // MARK: - Then
   func verifyDownloadImageDispatched(image: UIImage? = nil,
                                      error: Error? = nil,
