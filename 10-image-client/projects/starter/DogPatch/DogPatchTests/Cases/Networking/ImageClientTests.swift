@@ -313,6 +313,8 @@ class ImageClientTests: XCTestCase {
                    expectedImage.pngData())
   }
   
+  
+  
   // MARK: - Then
   func verifyDownloadImageDispatched(image: UIImage? = nil,
                                      error: Error? = nil,
