@@ -358,6 +358,14 @@ class ListingsViewControllerTests: XCTestCase {
   func test_imageClient_isImageService() {
     XCTAssertTrue((sut.imageClient as AnyObject) is ImageService)
   }
+  
+  func test_imageClient_setToSharedImageClient() {
+    // given
+    let expected = ImageClient.shared
+    
+    // then
+    XCTAssertTrue((sut.imageClient as? ImageClient) === expected)
+  }
 }
 
 // MARK: - Mocks
