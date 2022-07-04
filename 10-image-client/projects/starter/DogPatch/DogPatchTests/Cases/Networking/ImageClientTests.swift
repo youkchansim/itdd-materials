@@ -228,6 +228,24 @@ class ImageClientTests: XCTestCase {
                    receivedImage?.pngData())
   }
   
+  func test_setImageOnImageView_cancelsExistingDataTask() {
+    // given
+    let task = MockURLSessionTask(
+      completionHandler: { _, _, _ in },
+      url: url,
+      queue: nil)
+    let imageView = UIImageView()
+    sut.cachedTaskForImageView[imageView] = task
+    
+    // when
+    sut.setImage(on: imageView,
+                 fromURL: url,
+                 withPlaceholder: nil)
+    
+    // then
+    XCTAssertTrue(task.calledCancel)
+  }
+  
   // MARK: - Then
   func verifyDownloadImageDispatched(image: UIImage? = nil,
                                      error: Error? = nil,
