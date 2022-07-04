@@ -110,7 +110,7 @@ extension ListingsViewController: UITableViewDataSource {
     imageClient.setImage(
       on: cell.dogImageView,
       fromURL: viewModel.imageURL,
-      withPlaceholder: nil)
+      withPlaceholder: UIImage(named: "image_placeholder"))
     return cell
   }
 }
