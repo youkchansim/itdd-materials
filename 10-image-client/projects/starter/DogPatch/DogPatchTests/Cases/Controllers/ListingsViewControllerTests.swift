@@ -377,8 +377,7 @@ class ListingsViewControllerTests: XCTestCase {
     givenMockViewModels()
     
     // when
-    let indexPath = IndexPath(row: 0, section: 0)
-    let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as? ListingTableViewCell
+    let cell = whenDequeueFirstListingsCell()
     
     // then
     XCTAssertEqual(mockImageClient.receivedImageView,
@@ -391,12 +390,20 @@ class ListingsViewControllerTests: XCTestCase {
     let viewModel = sut.viewModels.first!
     
     // when
-    let indexPath = IndexPath(row: 0, section: 0)
-    _ = sut.tableView(sut.tableView, cellForRowAt: indexPath)
+    _ = whenDequeueFirstListingsCell()
     
     // then
     XCTAssertEqual(mockImageClient.receivedURL,
                    viewModel.imageURL)
+  }
+  
+  @discardableResult
+  func whenDequeueFirstListingsCell()
+    -> ListingTableViewCell? {
+      let indexPath = IndexPath(row: 0, section: 0)
+      return sut.tableView(sut.tableView,
+                           cellForRowAt: indexPath)
+        as? ListingTableViewCell
   }
 }
 
