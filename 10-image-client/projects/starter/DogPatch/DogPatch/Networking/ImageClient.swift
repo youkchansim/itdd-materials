@@ -76,6 +76,7 @@ extension ImageClient: ImageService {
     completion: @escaping (UIImage?, Error?) -> Void)
   -> URLSessionTaskProtocol? {
     if let image = cachedImageForURL[url] {
+      completion(image, nil)
       return nil
     }
     
