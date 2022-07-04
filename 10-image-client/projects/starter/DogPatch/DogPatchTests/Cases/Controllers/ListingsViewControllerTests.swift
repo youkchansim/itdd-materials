@@ -371,6 +371,19 @@ class ListingsViewControllerTests: XCTestCase {
     // then
     XCTAssertTrue((sut.imageClient as? ImageClient) === expected)
   }
+  
+  func test_tableViewCellForRowAt_callsImageClientSetImageWithDogImageView() {
+    // given
+    givenMockViewModels()
+    
+    // when
+    let indexPath = IndexPath(row: 0, section: 0)
+    let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as? ListingTableViewCell
+    
+    // then
+    XCTAssertEqual(mockImageClient.receivedImageView,
+                   cell?.dogImageView)
+  }
 }
 
 // MARK: - Mocks
