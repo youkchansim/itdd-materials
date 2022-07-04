@@ -278,11 +278,7 @@ class ImageClientTests: XCTestCase {
     givenExpectedImage()
     
     // when
-    sut.setImage(on: imageView,
-                 fromURL: url,
-                 withPlaceholder: nil)
-    receivedTask = sut.cachedTaskForImageView[imageView] as? MockURLSessionTask
-    receivedTask?.completionHandler(expectedImage.pngData(), nil, nil)
+    whenSetImage()
     
     // then
     XCTAssertNil(sut.cachedTaskForImageView[imageView])
@@ -293,11 +289,7 @@ class ImageClientTests: XCTestCase {
     givenExpectedImage()
     
     // when
-    sut.setImage(on: imageView,
-                 fromURL: url,
-                 withPlaceholder: nil)
-    receivedTask = sut.cachedTaskForImageView[imageView] as? MockURLSessionTask
-    receivedTask?.completionHandler(expectedImage.pngData(), nil, nil)
+    whenSetImage()
     
     // then
     XCTAssertEqual(imageView.image?.pngData(),
@@ -353,6 +345,15 @@ class ImageClientTests: XCTestCase {
     } else if let error = error {
       receivedTask.completionHandler(nil, nil, error)
     }
+  }
+  
+  func whenSetImage() {
+    givenExpectedImage()
+    sut.setImage(on: imageView,
+                 fromURL: url,
+                 withPlaceholder: nil)
+    receivedTask = sut.cachedTaskForImageView[imageView] as? MockURLSessionTask
+    receivedTask?.completionHandler(expectedImage.pngData(), nil, nil)
   }
   
   // MARK: - Given
